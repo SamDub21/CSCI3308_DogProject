@@ -66,6 +66,10 @@ app.get('/', (req, res) => {
   res.redirect('pages/home');
 });
 
+//SAMPLE/TEST API
+app.get('/welcome', (req, res) => {
+  res.json({status: 'success', message: 'Welcome!'});
+});
 
 /*=====Registration APIs=====*/
 app.get('/register', (req, res) =>{
