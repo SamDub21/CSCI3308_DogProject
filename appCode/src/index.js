@@ -104,6 +104,25 @@ res.render('pages/login');
 
 // app.post('login', async (req, res) => {
 // });
+app.post('/login', async(req, res) => {
+  try{
+      const query = "SELECT * FROM users WHERE username = $1;"
+      const reqUser = req.body.username;
+      const user = await db.one(query, [reqUser]);
+      const match = await bcrypt.compare(req.body.password, user.password);
+  if (match){
+      req.session.user = user;
+      req.session.save();
+      res.redirect('/discover');
+  }
+  else{
+      res.render('pages/login', {message:"Incorrect username or password."});
+  }}
+   catch{
+      console.log ("catch");
+      res.render('pages/register');
+   }
+  });
 
 
 // *****************************************************
