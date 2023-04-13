@@ -61,6 +61,28 @@ app.use(
 // <!-- Section 4 : API Routes -->
 // *****************************************************
 
+/*=====Default Route=====*/
+app.get('/', (req, res) => {
+  res.redirect('pages/home');
+});
+
+
+/*=====Registration APIs=====*/
+app.get('/register', (req, res) =>{
+  res.render('pages/register');
+});
+
+// app.post('/register', async (req, res) => {
+// });
+
+
+/*=====Login APIs=====*/
+app.get('/login', (req,res) =>{
+res.render('pages/login');
+});
+
+// app.post('login', async (req, res) => {
+// });
 
 
 // *****************************************************
