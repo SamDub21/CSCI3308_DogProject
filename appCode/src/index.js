@@ -78,6 +78,23 @@ app.get('/register', (req, res) =>{
 
 // app.post('/register', async (req, res) => {
 // });
+app.post('/register', async (req, res) => {
+  //hash the password using bcrypt library
+  const hash = await bcrypt.hash(req.body.password, 10);
+
+  // To-DO: Insert username and hashed password into 'users' table
+  const user = req.body.username;
+  const pass = req.body.password;
+  const query = `INSERT INTO users(username, password) VALUES($1, $2) RETURNING username`;
+  db.any(query, [user, hash])
+  .then(function(data) {
+      res.redirect('/login');
+  })
+  .catch(function (err) {
+      console.log(err);
+      res.redirect('/register');
+  });
+});
 
 
 /*=====Login APIs=====*/
