@@ -86,12 +86,12 @@ app.post('/register', async (req, res) => {
   }
 
   //hash the password using bcrypt library
-  // const hash = await bcrypt.hash(password, 10);
+  const hash = await bcrypt.hash(password, 10);
 
   //adding new user to DB
   try{
     const insertQuery = 'INSERT INTO users (username, email, firstName, lastName, password) VALUES ($1, $2, $3, $4, $5);'
-    await db.none(insertQuery, [username, email, firstName, lastName, password]);
+    await db.none(insertQuery, [username, email, firstName, lastName, hash]);
     res.status(200).send('Registration Success!')
     // res.redirect('login');
   }catch (error){
@@ -118,22 +118,39 @@ app.post('/login', async (req, res) => {
   const passwordDB = await db.oneOrNone(query, [username]);
   if(!passwordDB){ //if user not found
     res.status(404).send('User not found');
-    res.redirect('register');
   } 
   else{
     //comparing given password and password from DB
-    // const match = await bcrypt.compare(password, passwordDB); ***uncomment after password hashing added to /register***
-    console.log(password);
-    console.log(passwordDB);
-    if(password != passwordDB){
-      return res.status(401).json({error : 'Incorrect password'});
-    }
-    //set session variable
-    req.session.user = username;
-    req.session.save();
+    await bcrypt.compare(password, passwordDB,toString(), (err, result) =>{
+      if(err){
+        console.error(err);
+      }
+      else{
+        if(!result){ //passwords dont match
+          res.status(401).json({error : 'Incorrect password'});
+        }
+        else{
+          //setting session variable
+          req.session.user = username;
+          req.session.save();
 
-    res.status(200).send('Login Success!');
-    res.redirect('home');
+          res.status(200).send('Login Success!');
+          // res.redirect('home');
+        }
+      }
+    });
+    // const match = await bcrypt.compare(password, passwordDB,toString());
+    // if(!match){ //if passwords dont match
+    //   return res.status(401).json({error : 'Incorrect password'});
+    // }
+    // else{ //passwords match
+    //   //setting session variable
+    //   req.session.user = username;
+    //   req.session.save();
+
+    //   res.status(200).send('Login Success!');
+    //   // res.redirect('home');
+    // }
   }
 });
 
