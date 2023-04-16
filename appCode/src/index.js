@@ -103,11 +103,35 @@ app.post('/register', async (req, res) => {
 
 /*=====Login APIs=====*/
 app.get('/login', (req,res) =>{
-res.render('pages/login');
+  res.render('pages/login');
 });
 
-// app.post('login', async (req, res) => {
-// });
+app.post('login', async (req, res) => {
+  //get and validate user data
+  const {username, password} = req.body;
+  if(!username || !password){
+    return res.status(400).json({error : 'One or more fields missing'});
+  }
+
+  //find given user in DB
+  const query = `SELECT password FROM users where username = $1;`;
+  const passwordDB = await db.oneOrNone(query, [username]);
+  if(passwordDB == 0){ //if user not found
+    res.status(404).send('User not found');
+    res.redirect('register');
+  } 
+  else{
+    //comparing given password and password from DB
+    // const match = await bcrypt.compare(password, passwordDB); ***uncomment after password hashing added to /register***
+    if(password != passwordDB){
+      return res.status(401).json({error : 'Incorrect password'});
+    }
+    //set session variable
+
+  }
+  res.status(200).send('Login Success!');
+  res.redirect('home');
+});
 
 
 // *****************************************************
