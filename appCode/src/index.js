@@ -63,7 +63,7 @@ app.use(
 
 /*=====Default Route=====*/
 app.get('/', (req, res) => {
-  res.redirect('pages/home');
+  res.redirect('register');
 });
 
 
@@ -86,13 +86,14 @@ app.post('/register', async (req, res) => {
   }
 
   //hash the password using bcrypt library
-  const hash = await bcrypt.hash(password, 10);
+  // const hash = await bcrypt.hash(password, 10);
 
   //adding new user to DB
   try{
     const insertQuery = 'INSERT INTO users (username, email, firstName, lastName, password) VALUES ($1, $2, $3, $4, $5);'
-    await db.none(insertQuery, [username, email, firstName, lastName, hash]);
+    await db.none(insertQuery, [username, email, firstName, lastName, password]);
     res.status(200).send('Registration Success!')
+    // res.redirect('login');
   }catch (error){
     console.error(error);
     res.status(500).json({error : 'Server Error'});
