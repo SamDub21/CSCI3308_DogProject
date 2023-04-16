@@ -106,7 +106,7 @@ app.get('/login', (req,res) =>{
   res.render('pages/login');
 });
 
-app.post('login', async (req, res) => {
+app.post('/login', async (req, res) => {
   //get and validate user data
   const {username, password} = req.body;
   if(!username || !password){
@@ -116,22 +116,36 @@ app.post('login', async (req, res) => {
   //find given user in DB
   const query = `SELECT password FROM users where username = $1;`;
   const passwordDB = await db.oneOrNone(query, [username]);
-  if(passwordDB == 0){ //if user not found
+  if(!passwordDB){ //if user not found
     res.status(404).send('User not found');
     res.redirect('register');
   } 
   else{
     //comparing given password and password from DB
     // const match = await bcrypt.compare(password, passwordDB); ***uncomment after password hashing added to /register***
+    console.log(password);
+    console.log(passwordDB);
     if(password != passwordDB){
       return res.status(401).json({error : 'Incorrect password'});
     }
     //set session variable
+    req.session.user = username;
+    req.session.save();
 
+    res.status(200).send('Login Success!');
+    res.redirect('home');
   }
-  res.status(200).send('Login Success!');
-  res.redirect('home');
 });
+
+
+/*=====Authentication Middleware=====*/
+const auth = (req, res, next) => {
+  if(!req.session.user){
+    return res.redirect('login');
+  }
+  next();
+};
+app.use(auth);
 
 
 // *****************************************************
