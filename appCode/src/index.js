@@ -63,7 +63,7 @@ app.use(
 
 /*=====Default Route=====*/
 app.get('/', (req, res) => {
-  res.redirect('pages/home');
+  res.redirect('register');
 });
 
 //SAMPLE/TEST API
@@ -76,53 +76,85 @@ app.get('/register', (req, res) =>{
   res.render('pages/register');
 });
 
-// app.post('/register', async (req, res) => {
-// });
 app.post('/register', async (req, res) => {
-  //hash the password using bcrypt library
-  const hash = await bcrypt.hash(req.body.password, 10);
+  //get and validate user data
+  const {username, firstName, lastName, email, password} = req.body;
+  if(!username || !firstName || !lastName || !email ||!password){
+    return res.status(400).json({error : 'One or more fields missing'});
+  }
 
-  // To-DO: Insert username and hashed password into 'users' table
-  const user = req.body.username;
-  const pass = req.body.password;
-  const query = `INSERT INTO users(username, password) VALUES($1, $2) RETURNING username`;
-  db.any(query, [user, hash])
-  .then(function(data) {
-      res.redirect('/login');
-  })
-  .catch(function (err) {
-      console.log(err);
-      res.redirect('/register');
-  });
+  //check if user alrady exists
+  const checkQuery = await db.oneOrNone(`SELECT * FROM users WHERE username = $1;`, [username]);
+  if(checkQuery){ //if user already in data base
+    return res.status(400).json({error : 'User already exists'});
+  }
+
+  //hash the password using bcrypt library
+  const hash = await bcrypt.hash(password, 10);
+
+  //adding new user to DB
+  try{
+    const insertQuery = 'INSERT INTO users (username, email, firstName, lastName, password) VALUES ($1, $2, $3, $4, $5);'
+    await db.none(insertQuery, [username, email, firstName, lastName, hash]);
+    res.status(200).send('Registration Success!')
+    // res.redirect('login');
+  }catch (error){
+    console.error(error);
+    res.status(500).json({error : 'Server Error'});
+  }
 });
 
 
 /*=====Login APIs=====*/
 app.get('/login', (req,res) =>{
-res.render('pages/login');
+  res.render('pages/login');
 });
 
-// app.post('login', async (req, res) => {
-// });
-app.post('/login', async(req, res) => {
-  try{
-      const query = "SELECT * FROM users WHERE username = $1;"
-      const reqUser = req.body.username;
-      const user = await db.one(query, [reqUser]);
-      const match = await bcrypt.compare(req.body.password, user.password);
-  if (match){
-      req.session.user = user;
-      req.session.save();
-      res.redirect('/discover');
+app.post('/login', async (req, res) => {
+  //get and validate user data
+  const {username, password} = req.body;
+  if(!username || !password){
+    return res.status(400).json({error : 'One or more fields missing'});
   }
+
+  //find given user in DB
+  const query = `SELECT password FROM users where username = $1;`;
+  const passwordDB = await db.oneOrNone(query, [username]);
+  if(!passwordDB){ //if user not found
+    res.status(404).send('User not found');
+  } 
   else{
-      res.render('pages/login', {message:"Incorrect username or password."});
-  }}
-   catch{
-      console.log ("catch");
-      res.render('pages/register');
-   }
-  });
+    //comparing given password and password from DB
+    await bcrypt.compare(password, passwordDB.password, (err, result) =>{
+      if(err){
+        console.error(err);
+      }
+      else{
+        if(!result){ //passwords dont match
+          res.status(401).json({error : 'Incorrect password'});
+        }
+        else{
+          //setting session variable
+          req.session.user = username;
+          req.session.save();
+
+          res.status(200).send('Login Success!');
+          // res.redirect('home');
+        }
+      }
+    });
+  }
+});
+
+
+/*=====Authentication Middleware=====*/
+const auth = (req, res, next) => {
+  if(!req.session.user){
+    return res.redirect('login');
+  }
+  next();
+};
+app.use(auth);
 
 
 // *****************************************************
