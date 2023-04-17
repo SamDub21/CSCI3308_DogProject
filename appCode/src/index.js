@@ -124,6 +124,10 @@ app.post('/login', async(req, res) => {
    }
   });
 
+  app.get('/marketplace', (req, res) =>{
+    res.render('pages/marketplace');
+  });
+
 
 // *****************************************************
 // <!-- Section 5 : Start Server-->
