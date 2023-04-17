@@ -121,7 +121,7 @@ app.post('/login', async (req, res) => {
   } 
   else{
     //comparing given password and password from DB
-    await bcrypt.compare(password, passwordDB,toString(), (err, result) =>{
+    await bcrypt.compare(password, passwordDB.password, (err, result) =>{
       if(err){
         console.error(err);
       }
@@ -139,18 +139,6 @@ app.post('/login', async (req, res) => {
         }
       }
     });
-    // const match = await bcrypt.compare(password, passwordDB,toString());
-    // if(!match){ //if passwords dont match
-    //   return res.status(401).json({error : 'Incorrect password'});
-    // }
-    // else{ //passwords match
-    //   //setting session variable
-    //   req.session.user = username;
-    //   req.session.save();
-
-    //   res.status(200).send('Login Success!');
-    //   // res.redirect('home');
-    // }
   }
 });
 
