@@ -2,3 +2,4 @@
 -Basic Login and Registration pages created
 -Login and Registration APIs Finished
 -Configured Server and Database
+-Partials Created for EJS Pages
