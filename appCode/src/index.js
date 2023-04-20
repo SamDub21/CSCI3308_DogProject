@@ -96,8 +96,7 @@ app.post('/register', async (req, res) => {
   try{
     const insertQuery = 'INSERT INTO users (username, email, firstName, lastName, password) VALUES ($1, $2, $3, $4, $5);'
     await db.none(insertQuery, [username, email, firstName, lastName, hash]);
-    res.status(200).send('Registration Success!')
-    // res.redirect('login');
+    res.status(200).redirect('login');
   }catch (error){
     console.error(error);
     res.status(500).json({error : 'Server Error'});
@@ -156,10 +155,30 @@ const auth = (req, res, next) => {
 };
 app.use(auth);
 
-  app.get('/marketplace', (req, res) =>{
-    res.render('pages/marketplace');
-  });
+/*=====Marketplace APIS=====*/
+app.get('/market', (req, res) => {
+  res.render('pages/marketplace');
+});
 
+/*=====Searchpage APIs=====*/
+app.get('/search', (req, res) => {
+  res.render('pages/searchpage');
+});
+
+/*=====Messaging Page APIs=====*/
+app.get('/chat', (req, res) => {
+  res.render('pages/contact');
+});
+
+/*=====User Profile APIs=====*/
+app.get('/profile', (req,res) => {
+  res.render('pages/userProfile');
+});
+
+/*=====Home Page APIs=====*/
+app.get('/home', (req, res) => {
+  res.render('pages/home');
+});
 
 // *****************************************************
 // <!-- Section 5 : Start Server-->
