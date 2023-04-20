@@ -138,7 +138,7 @@ app.post('/login', async (req, res) => {
           req.session.user = username;
           req.session.save();
 
-          res.status(200).send('Login Success!');
+          res.status(200).redirect('home');
           // res.redirect('home');
         }
       }
@@ -181,6 +181,10 @@ app.get('/home', (req, res) => {
   res.render('pages/home');
 });
 
+app.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.render("pages/login");
+});
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
