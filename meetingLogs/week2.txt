@@ -1,0 +1,34 @@
+Meeting Date: 4-20-2023
+
+==========Work Done from last Week==========
+-Jackson 
+    -Created basic HTML pages for registration and login
+    -set up the server and DB 
+    -set up file structure in repo
+    -made login/register APIs
+-Sam
+    -Made API call for dog info
+-Bipin
+    -Made html for marketplace page
+    -made product cards for market place
+-Andy
+    -created Partials
+==========Work ToDo for this week==========
+-Jackson
+    -create GET routes to render other pages
+    -create user profile page     ****TA note: maybe add list of favorited dogs****
+    -create edit user profile API ****TA note: not a prioity****
+    -Make test plan for lab 11
+-Sam 
+    -make unit tests for lab 11
+    -write API to populate search page
+    -finish search page
+-Bipin
+    -set up table in DB to hold products for market place and load them up dynamically
+-Andy 
+    -work on integrating API messaging system
+==========Genral Notes==========
+-need to pick up work pace
+-no hard coding
+-work on all bugs as they show up
+-focus on base website functionality before adding extra feautres
