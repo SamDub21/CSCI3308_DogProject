@@ -156,6 +156,10 @@ const auth = (req, res, next) => {
 };
 app.use(auth);
 
+  app.get('/marketplace', (req, res) =>{
+    res.render('pages/marketplace');
+  });
+
 
 // *****************************************************
 // <!-- Section 5 : Start Server-->
