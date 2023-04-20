@@ -1,0 +1,94 @@
+Feature 1: User Login 
+	Case 1: User logs in successfully after providing a username and password 
+		-Test Data: Valid username and password
+		-User Activity: User enters username and password and presses the login button
+		-Expected Result: User is logged in and sent to the home page
+	Case 2: User can not login after providing an incorrect username and/or password
+		-Test Data: Invalid username and password
+		-User Activity: User enters username and password and presses the login button
+        -Expected Result: User is shown an error message indicating incorrect login credentials 
+	Case 3: Page gives error message if user leaves a field empty
+		-Test Data: username or password
+		-User Activity: User enters username or password and presses the login button
+        -Expected Result: User is shown an error message indicating a missing field in the form
+	Test Data
+	-Valid username and password combination
+	-Invalid username and password combination
+    
+    Test Environment
+    -The website will be tested in a development environment that mirrors the production environment as closely as possible.
+   
+    Test Results
+    -Test results will be recorded in a file in the project repository, including the test case, the actual result, and any notes or comments.
+    
+    User Acceptance Testers
+    -The user acceptance testers will be a group of real-world end-users who will provide feedback on the usability and functionality of the user login feature. They will be given access to the website and asked to perform specific tasks, verifying that the user login feature works as expected.
+
+Feature 2: User Registration
+	Case 1: User registers with valid information
+		-Test Data: Valid username, first name, last name, valid email, and password
+		-User Activity: Users enter information into form and presses the register button
+		-Expected Result: User is given a registration success message and redirected to the login page
+	Case 2: User registers with username that already exists 
+		-Test Data: Invalid username, first name, last name, valid email, and password
+		-User Activity: User enters information into form and presses the register button
+		-Expected Result: User is given an error message
+	Case 3: User can not register with invalid email address
+		-Test Data: Valid username, first name, last name, invalid email, and password
+		-User Activity: User enters information into form and presses the register button
+		-Expected Result: User is given an error message
+	Case 4: User leaves one or more fields empty 
+		-Test Data: Valid username
+		-User Activity: User enters information into form and presses the register button
+		-Expected Result: User is given an error message
+	Test Data
+	-username
+	-username already connected to existing account
+	-first name
+	-last name
+	-valid email
+	-invalid email
+	-password
+
+    Test Environment
+    -The website will be tested in a development environment that mirrors the production environment as closely as possible.
+    
+    Test Results
+    -Test results will be recorded in a file in the project repository, including the test case, the actual result, and any notes or comments.
+    
+    User Acceptance Testers
+    -The user acceptance testers will be a group of real-world end-users who will provide feedback on the usability and functionality of the user registration feature. They will be given access to the website and asked to perform specific tasks, verifying that the user registration feature works as expected.
+
+
+Feature 3: Dog Search Filter Functionality
+	Case 1: User filters by breed
+		-Test Data: Breed name
+		-User Activity: User presses filter button, then selects a breed and presses the search button 
+		-Expected Result: User is shown only dogs of selected breed
+	Case 2: User filters by age
+		-Test Data: Age range
+		-User Activity: User presses filter button, then selects an age range and presses search button 
+		-Expected Result: User is shown only dogs in the given age range
+	Case 3: User filters with invalid age range
+		-Test Data: Age range
+		-User Activity: User presses filter button, then selects an age range and presses search button 
+		-Expected Result: User is shown no dogs and an error message
+	Case 4: User filters by location
+		-Test Data: location and search radius
+		-User Activity: User presses filter button, enters a location and search radius, then presses search button
+		-Expected Result: User is shown only dogs in the given search radius
+    Test Data
+    -Breed name
+    -Age range
+    -User location
+    -search radius 
+
+    Test Environment
+    -The website will be tested in a development environment that mirrors the production environment as closely as possible.
+    
+    Test Results
+    -Test results will be recorded in a file in the project repository, including the test case, the actual result, and any notes or comments.
+    
+    User Acceptance Testers
+    -The user acceptance testers will be a group of real-world end-users who will provide feedback on the usability and functionality of the dog search filter feature. They will be given access to the website and asked to perform specific tasks, verifying that the dog search filter feature works as expected.
+
