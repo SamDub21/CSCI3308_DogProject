@@ -160,11 +160,25 @@ app.get('/market', (req, res) => {
   res.render('pages/marketplace');
 });
 
-/*=====Searchpage APIS=====*/
+/*=====Searchpage APIs=====*/
 app.get('/search', (req, res) => {
   res.render('pages/searchpage');
 });
 
+/*=====Messaging Page APIs=====*/
+app.get('/chat', (req, res) => {
+  res.render('pages/contact');
+});
+
+/*=====User Profile APIs=====*/
+app.get('/profile', (req,res) => {
+  res.render('pages/userProfile');
+});
+
+/*=====Home Page APIs=====*/
+app.get('/home', (req, res) => {
+  res.render('pages/home');
+});
 
 // *****************************************************
 // <!-- Section 5 : Start Server-->
