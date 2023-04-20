@@ -1,3 +1,0 @@
-Sam Dubois 'stylesheet and searchpage'
-    I added some css to they style sheet to help my filter bar work for the search page, and made a general ejs layout of the search page
-    the API call needs to be finished in order to finish the search page so the information about the dogs can be populated onto their cards.
