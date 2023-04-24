@@ -1,99 +1,28 @@
 <%- include ('../partials/head') %>
 <%- include ('../partials/menu') %>
 
+<form id="petForm">
+    <input type="text" class="currentLocation" placeholder="Your Zip Code">
 
-**This is how I plan to layout this page, can't fill it in with the real dogs because the dog API call isn't done yet**
-**It's three rows of 3 dogs each with a button to contact the shelter and it will also have information on the dog once the API call is done**
-<head>
-    <div id="btnfilters">
-    <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-    <button class="btn" onclick="filterSelection('male')"> Cars</button>
-    <button class="btn" onclick="filterSelection('female')"> Animals</button>
-    <button class="btn" onclick="filterSelection('puppy')"> Animals</button>
-  </div>
-  
-</head>
-<!-- Control buttons -->
+    <label for="typeOfPet">Type of Pet</label>
+  <select name="typeOfPet" id="petType">
+           <option value="cat">Cat</option>
+           <option value="dog">Dog</option>
+       </select>
+ 
+ <label for="sexOfPet">Preferred Sex</label>
+   <select name="sexOfPet" id="petSex">
+     <option value="">No preference</option>
+     <option value="M">Show only Males</option>
+     <option value="F">Show only Females</option>
+   </select>
+     
+    <input type="submit" name="submit" value="Find Friends" id="submit">
+</form>
+<div id="availablePets">
+    
+</div>
 
 
-<main>
-    <section class="section">
-        <div class="container">
-            <h1>Dog List</h1>
-        </div>
-    </section>
-    <div class="container">
-        <h1>DOGS</h1>
-        <h5>Available</h5>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card h-20">
-                    <div class="filterDiv male">David</div>
-                    <img src="the dogs picture from the api call" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">David - Lab mix</h5>
-                        <p class="card-text">Blah blah blah age weight size</p>
-                        <a href="linktotheshelter">Adopt Me!</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-20">
-                    <div class="filterDiv female">Sarah</div>
-                    <img src="the dogs picture from the api call" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Sarah- Dachsund mix</h5>
-                        <p class="card-text">Blah blah blah age weight size, I'm so cute!!!!! --- This will all be filled in by the api call</p>
-                        <a href="linktotheshelter">Adopt Me!</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-20">
-                    <div class="filterDiv male">David</div>
-                    <img src="the dogs picture from the api call" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">David - Lab mix</h5>
-                        <p class="card-text">Blah blah blah age weight size</p>
-                        <a href="linktotheshelter">Adopt Me!</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-20">
-                    <div class="filterDiv male">David</div>
-                    <img src="the dogs picture from the api call" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">David - Lab mix</h5>
-                        <p class="card-text">Blah blah blah age weight size</p>
-                        <a href="linktotheshelter">Adopt Me!</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-20">
-                    <div class="filterDiv male">David</div>
-                    <img src="the dogs picture from the api call" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">David - Lab mix</h5>
-                        <p class="card-text">Blah blah blah age weight size</p>
-                        <a href="linktotheshelter">Adopt Me!</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-20">
-                    <div class="filterDiv male">David</div>
-                    <img src="the dogs picture from the api call" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">David - Lab mix</h5>
-                        <p class="card-text">Blah blah blah age weight size</p>
-                        <a href="linktotheshelter">Adopt Me!</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
 
 <%- include ('../partials/footer') %>
