@@ -6,14 +6,101 @@
                     <h1>Interests</h1>
                 </div>
             </section>
+            <h1>Pet store</h1>
             <div class="container">
-                <h1>Pet store</h1>
                 <h4>Foods</h4>
+                <div class="flex flex-row">
+                    <% for(let i = 0; i<products.length; i++){%>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="<%=products[i].imagesource%>" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%=products[i].title%></h5>
+                                    <h6 class="class-subtitle"><%=products[i].cost%></h6>
+                                    <h7 class="class-subtitle"><%=products[i].description%></h7>
+                                    <p class="card-text"></p>
+                                    <a href="<%=products[i].url%>" class="btn btn-primary">Purchase</a>
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+                </div>
+                <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card h-100 text-center">
+                            <div class="flex align-center justify-content-center">
+                                <img src="https://m.media-amazon.com/images/I/71Azp-504uL._AC_UL400_.jpg"
+                                    class="card-img-top" alt="..." style="width:100px;height:auto;">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Purina ONE Dry Dog Food Lamb and Rice Formula - 31.1
+                                    Lb. Bag</h5>
+                                <p class="card-text">Natural dog food with added vitamins, minerals, and nutrients has a
+                                    Purina ONE SmartBlend of
+                                    high-quality ingredients, including quality carbohydrate sources, that helps support
+                                    dog
+                                    nutritional needs.</p>
+                                <a href="https://www.amazon.com/Purina-Smartblend-Natural-Formula-Adult/dp/B009IOCCD2/ref=sr_1_1_sspa?crid
+                        =2OJ905YMGZJRS&keywords=dog+food&qid=1681614881&rdc=1&sprefix=dog+food%2Caps%2C130&sr=8-1-spons&psc=1&spLa
+                        =ZW5jcnlwdGVkUXVhbGlmaWVyPUFKRkEwUURLODJPRFUmZW5jcnlwdGVkSWQ9QTA1NjcyNzcyQ1lIM0NUSzIyN1NXJmVuY3J5cHRlZEFkSW
+                        Q9QTA2NzcyNDAxRkcxSjlVNk1SQ1U2JndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ
+                        ==">Purchase</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 text-center">
+                            <div class="flex align-center justify-content-center">
+                                <img src="https://m.media-amazon.com/images/I/71Azp-504uL._AC_UL400_.jpg"
+                                    class="card-img-top" alt="..." style="width:100px;height:auto;">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Purina ONE Dry Dog Food Lamb and Rice Formula - 31.1
+                                    Lb. Bag</h5>
+                                <p class="card-text">Natural dog food with added vitamins, minerals, and nutrients has a
+                                    Purina ONE SmartBlend of
+                                    high-quality ingredients, including quality carbohydrate sources, that helps support
+                                    dog
+                                    nutritional needs.</p>
+                                <a href="https://www.amazon.com/Purina-Smartblend-Natural-Formula-Adult/dp/B009IOCCD2/ref=sr_1_1_sspa?crid
+                        =2OJ905YMGZJRS&keywords=dog+food&qid=1681614881&rdc=1&sprefix=dog+food%2Caps%2C130&sr=8-1-spons&psc=1&spLa
+                        =ZW5jcnlwdGVkUXVhbGlmaWVyPUFKRkEwUURLODJPRFUmZW5jcnlwdGVkSWQ9QTA1NjcyNzcyQ1lIM0NUSzIyN1NXJmVuY3J5cHRlZEFkSW
+                        Q9QTA2NzcyNDAxRkcxSjlVNk1SQ1U2JndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ
+                        ==">Purchase</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 text-center">
+                            <div class="flex align-center justify-content-center">
+                                <img src="https://m.media-amazon.com/images/I/71Azp-504uL._AC_UL400_.jpg"
+                                    class="card-img-top" alt="..." style="width:100px;height:auto;">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Purina ONE Dry Dog Food Lamb and Rice Formula - 31.1
+                                    Lb. Bag</h5>
+                                <p class="card-text">Natural dog food with added vitamins, minerals, and nutrients has a
+                                    Purina ONE SmartBlend of
+                                    high-quality ingredients, including quality carbohydrate sources, that helps support
+                                    dog
+                                    nutritional needs.</p>
+                                <a href="https://www.amazon.com/Purina-Smartblend-Natural-Formula-Adult/dp/B009IOCCD2/ref=sr_1_1_sspa?crid
+                        =2OJ905YMGZJRS&keywords=dog+food&qid=1681614881&rdc=1&sprefix=dog+food%2Caps%2C130&sr=8-1-spons&psc=1&spLa
+                        =ZW5jcnlwdGVkUXVhbGlmaWVyPUFKRkEwUURLODJPRFUmZW5jcnlwdGVkSWQ9QTA1NjcyNzcyQ1lIM0NUSzIyN1NXJmVuY3J5cHRlZEFkSW
+                        Q9QTA2NzcyNDAxRkcxSjlVNk1SQ1U2JndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ
+                        ==">Purchase</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- <div class="container">
+                <h4>Products</h4>
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     <div class="col">
                         <div class="card h-100 text-center">
                             <div class="flex align-center justify-content-center">
-                                <img src="https://m.media-amazon.com/images/I/71Azp-504uL._AC_UL400_.jpg"
+                                <img src="https://m.media-amazon.com/images/I/714eqPn93OL._AC_SX679_.jpg"
                                     class="card-img-top" alt="..." style="width:100px;height:auto;">
                             </div>
                             <div class="card-body">
@@ -24,18 +111,15 @@
                                     high-quality ingredients, including quality carbohydrate sources, that helps support
                                     dog
                                     nutritional needs.</p>
-                                <a href="https://www.amazon.com/Purina-Smartblend-Natural-Formula-Adult/dp/B009IOCCD2/ref=sr_1_1_sspa?crid
-                        =2OJ905YMGZJRS&keywords=dog+food&qid=1681614881&rdc=1&sprefix=dog+food%2Caps%2C130&sr=8-1-spons&psc=1&spLa
-                        =ZW5jcnlwdGVkUXVhbGlmaWVyPUFKRkEwUURLODJPRFUmZW5jcnlwdGVkSWQ9QTA1NjcyNzcyQ1lIM0NUSzIyN1NXJmVuY3J5cHRlZEFkSW
-                        Q9QTA2NzcyNDAxRkcxSjlVNk1SQ1U2JndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ
-                        ==">Purchase</a>
+                                <a
+                                    href="https://www.amazon.com/Shampoo-Oatmeal-Sensitive-Olivers-Choice/dp/B081TMYWZR/ref=sr_1_1_sspa?crid=P413AE6K2PKJ&keywords=dog+shampoo+and+conditioner&qid=1682001130&sprefix=dog+ahampo%2Caps%2C115&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzSFM1WEdJTExNQjNGJmVuY3J5cHRlZElkPUEwNDg4ODQ1M0lRUjNRRDdCUVcwWCZlbmNyeXB0ZWRBZElkPUEwNjUwMDc3MzA2UUY2WEZVRUtGMyZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Purchase</a>
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card h-100 text-center">
                             <div class="flex align-center justify-content-center">
-                                <img src="https://m.media-amazon.com/images/I/71Azp-504uL._AC_UL400_.jpg"
+                                <img src="https://m.media-amazon.com/images/I/51QB1mxgJEL._AC_SX679_.jpg"
                                     class="card-img-top" alt="..." style="width:100px;height:auto;">
                             </div>
                             <div class="card-body">
@@ -46,18 +130,15 @@
                                     high-quality ingredients, including quality carbohydrate sources, that helps support
                                     dog
                                     nutritional needs.</p>
-                                <a href="https://www.amazon.com/Purina-Smartblend-Natural-Formula-Adult/dp/B009IOCCD2/ref=sr_1_1_sspa?crid
-                        =2OJ905YMGZJRS&keywords=dog+food&qid=1681614881&rdc=1&sprefix=dog+food%2Caps%2C130&sr=8-1-spons&psc=1&spLa
-                        =ZW5jcnlwdGVkUXVhbGlmaWVyPUFKRkEwUURLODJPRFUmZW5jcnlwdGVkSWQ9QTA1NjcyNzcyQ1lIM0NUSzIyN1NXJmVuY3J5cHRlZEFkSW
-                        Q9QTA2NzcyNDAxRkcxSjlVNk1SQ1U2JndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ
-                        ==">Purchase</a>
+                                <a
+                                    href="https://www.amazon.com/Earthbath-Vanilla-Almond-Grooming-Bundle/dp/B0733Q6FZS/ref=sr_1_2_sspa?crid=P413AE6K2PKJ&keywords=dog+shampoo+and+conditioner&qid=1682001238&sprefix=dog+ahampo%2Caps%2C115&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzVjNJRlE1MjBDUzJRJmVuY3J5cHRlZElkPUEwODI3NjUwMk1DVUFVNDNPRlZNRiZlbmNyeXB0ZWRBZElkPUEwMDU0ODQ2UktOVkIyR0RTUkJUJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==">Purchase</a>
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card h-100 text-center">
                             <div class="flex align-center justify-content-center">
-                                <img src="https://m.media-amazon.com/images/I/71Azp-504uL._AC_UL400_.jpg"
+                                <img src="	https://m.media-amazon.com/images/I/710sFozf+FL._AC_SX679_.jpg"
                                     class="card-img-top" alt="..." style="width:100px;height:auto;">
                             </div>
                             <div class="card-body">
@@ -68,15 +149,74 @@
                                     high-quality ingredients, including quality carbohydrate sources, that helps support
                                     dog
                                     nutritional needs.</p>
-                                <a href="https://www.amazon.com/Purina-Smartblend-Natural-Formula-Adult/dp/B009IOCCD2/ref=sr_1_1_sspa?crid
-                        =2OJ905YMGZJRS&keywords=dog+food&qid=1681614881&rdc=1&sprefix=dog+food%2Caps%2C130&sr=8-1-spons&psc=1&spLa
-                        =ZW5jcnlwdGVkUXVhbGlmaWVyPUFKRkEwUURLODJPRFUmZW5jcnlwdGVkSWQ9QTA1NjcyNzcyQ1lIM0NUSzIyN1NXJmVuY3J5cHRlZEFkSW
-                        Q9QTA2NzcyNDAxRkcxSjlVNk1SQ1U2JndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ
-                        ==">Purchase</a>
+                                <a
+                                    href="https://www.amazon.com/Natural-Dog-Company-Hypoallergenic-Paraben-Free/dp/B00W1QTLZG/ref=sr_1_4_sspa?crid=P413AE6K2PKJ&keywords=dog+shampoo+and+conditioner&qid=1682001238&sprefix=dog+ahampo%2Caps%2C115&sr=8-4-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzVjNJRlE1MjBDUzJRJmVuY3J5cHRlZElkPUEwODI3NjUwMk1DVUFVNDNPRlZNRiZlbmNyeXB0ZWRBZElkPUEwMTA2ODU3MUUyQkpDV1g1TkxEVCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Purchase</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <h4>Toys</h4>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card h-100 text-center">
+                            <div class="flex align-center justify-content-center">
+                                <img src="https://m.media-amazon.com/images/I/71Jpk+RHJGL._AC_SX679_.jpg"
+                                    class="card-img-top" alt="..." style="width:100px;height:auto;">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Purina ONE Dry Dog Food Lamb and Rice Formula - 31.1
+                                    Lb. Bag</h5>
+                                <p class="card-text">Natural dog food with added vitamins, minerals, and nutrients has a
+                                    Purina ONE SmartBlend of
+                                    high-quality ingredients, including quality carbohydrate sources, that helps support
+                                    dog
+                                    nutritional needs.</p>
+                                <a
+                                    href="https://www.amazon.com/CPYOSN-Dog-Squeaky-Toys-Octopus/dp/B08G477X74/ref=sr_1_1_sspa?crid=PX5BVM92R4MR&keywords=dog%2Btoys&qid=1682004059&sprefix=dog%2Btoy%2Caps%2C176&sr=8-1-spons&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTDVBRjVNT1YyVDNXJmVuY3J5cHRlZElkPUEwNTY1MzY5MTROSEEzU1JZNE5INSZlbmNyeXB0ZWRBZElkPUEwMTM1Njk3MkJHT1JLQTRYQlU2MyZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU&th=1">Purchase</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 text-center">
+                            <div class="flex align-center justify-content-center">
+                                <img src="	https://m.media-amazon.com/images/I/71KHlJw+8TL._AC_SX679_.jpg"
+                                    class="card-img-top" alt="..." style="width:100px;height:auto;">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Purina ONE Dry Dog Food Lamb and Rice Formula - 31.1
+                                    Lb. Bag</h5>
+                                <p class="card-text">Natural dog food with added vitamins, minerals, and nutrients has a
+                                    Purina ONE SmartBlend of
+                                    high-quality ingredients, including quality carbohydrate sources, that helps support
+                                    dog
+                                    nutritional needs.</p>
+                                <a
+                                    href="https://www.amazon.com/Toothbrush-Interactive-Squeaky-Aggressive-Chewers/dp/B08NJJQ1KW/ref=sr_1_6?crid=PX5BVM92R4MR&keywords=dog%2Btoys&qid=1682004274&sprefix=dog%2Btoy%2Caps%2C176&sr=8-6&th=1">Purchase</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 text-center">
+                            <div class="flex align-center justify-content-center">
+                                <img src="https://m.media-amazon.com/images/I/81Agaj-W5LL._AC_SX679_.jpg"
+                                    class="card-img-top" alt="..." style="width:100px;height:auto;">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Purina ONE Dry Dog Food Lamb and Rice Formula - 31.1
+                                    Lb. Bag</h5>
+                                <p class="card-text">Natural dog food with added vitamins, minerals, and nutrients has a
+                                    Purina ONE SmartBlend of
+                                    high-quality ingredients, including quality carbohydrate sources, that helps support
+                                    dog
+                                    nutritional needs.</p>
+                                <a
+                                    href="https://www.amazon.com/Benebone-Wishbone-Durable-Aggressive-Chewers/dp/B00CPDWT2M/ref=sr_1_33?crid=PX5BVM92R4MR&keywords=dog%2Btoys&qid=1682004274&rdc=1&sprefix=dog%2Btoy%2Caps%2C176&sr=8-33&th=1">Purchase</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </main>
         <%- include ('../partials/footer') %>

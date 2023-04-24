@@ -68,72 +68,77 @@ app.get('/', (req, res) => {
 
 //SAMPLE/TEST API
 app.get('/welcome', (req, res) => {
-  res.json({status: 'success', message: 'Welcome!'});
+  res.json({ status: 'success', message: 'Welcome!' });
 });
 
 /*=====Registration APIs=====*/
-app.get('/register', (req, res) =>{
+app.get('/register', (req, res) => {
   res.render('pages/register');
 });
 
 app.post('/register', async (req, res) => {
   //get and validate user data
-  const {username, firstName, lastName, email, password} = req.body;
-  if(!username || !firstName || !lastName || !email ||!password){
-    return res.status(400).json({error : 'One or more fields missing'});
+  const { username, firstName, lastName, email, password } = req.body;
+  if (!username || !firstName || !lastName || !email || !password) {
+    return res.status(400).json({ error: 'One or more fields missing' });
   }
 
   //check if user alrady exists
   const checkQuery = await db.oneOrNone(`SELECT * FROM users WHERE username = $1;`, [username]);
-  if(checkQuery){ //if user already in data base
-    return res.status(400).json({error : 'User already exists'});
+  if (checkQuery) { //if user already in data base
+    return res.status(400).json({ error: 'User already exists' });
   }
 
   //hash the password using bcrypt library
   const hash = await bcrypt.hash(password, 10);
+  console.log(username.length);
+  console.log(firstName.length);
+  console.log(lastName.length);
+  console.log(email.length);
+  console.log(hash.length);
 
 
   //adding new user to DB
-  try{
+  try {
     const insertQuery = 'INSERT INTO users (username, email, firstName, lastName, password) VALUES ($1, $2, $3, $4, $5);'
     await db.none(insertQuery, [username, email, firstName, lastName, hash]);
     res.status(200).redirect('login');
   }catch (error){
     console.error(error);
-    res.status(500).json({error : 'Server Error'});
+    res.status(500).json({ error: 'Server Error' });
   }
 });
 
 
 /*=====Login APIs=====*/
-app.get('/login', (req,res) =>{
+app.get('/login', (req, res) => {
   res.render('pages/login');
 });
 
 app.post('/login', async (req, res) => {
   //get and validate user data
-  const {username, password} = req.body;
-  if(!username || !password){
-    return res.status(400).json({error : 'One or more fields missing'});
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ error: 'One or more fields missing' });
   }
 
   //find given user in DB
   const query = `SELECT password FROM users where username = $1;`;
   const passwordDB = await db.oneOrNone(query, [username]);
-  if(!passwordDB){ //if user not found
+  if (!passwordDB) { //if user not found
     res.status(404).send('User not found');
-  } 
-  else{
+  }
+  else {
     //comparing given password and password from DB
-    await bcrypt.compare(password, passwordDB.password, (err, result) =>{
-      if(err){
+    await bcrypt.compare(password, passwordDB.password, (err, result) => {
+      if (err) {
         console.error(err);
       }
-      else{
-        if(!result){ //passwords dont match
-          res.status(401).json({error : 'Incorrect password'});
+      else {
+        if (!result) { //passwords dont match
+          res.status(401).json({ error: 'Incorrect password' });
         }
-        else{
+        else {
           //setting session variable
           req.session.user = username;
           req.session.save();
@@ -149,7 +154,7 @@ app.post('/login', async (req, res) => {
 
 /*=====Authentication Middleware=====*/
 const auth = (req, res, next) => {
-  if(!req.session.user){
+  if (!req.session.user) {
     return res.redirect('login');
   }
   next();
@@ -157,9 +162,16 @@ const auth = (req, res, next) => {
 app.use(auth);
 
 /*=====Marketplace APIS=====*/
-app.get('/market', (req, res) => {
-  res.render('pages/marketplace');
-});
+app.get('/marketplace', (req, res) => {
+  const query = `SELECT * FROM PRODUCTS`;
+  db.any(query)
+  .then(data=>{
+
+    console.log(data);
+      res.render("pages/marketplace", {products: data})})
+  });
+
+// app.post()
 
 /*=====Searchpage APIs=====*/
 app.get('/search', (req, res) => {
