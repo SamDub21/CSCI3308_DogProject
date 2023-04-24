@@ -1,6 +1,15 @@
+=========Week 2 (4/17/23 - 4/24/23)==========
+-created GET routes for seach, home, marketplace, user profile, and contact page
+-created logout API 
+-made test plan and a unit tests for login/logut functionality
+-updated DB to hold user profile information
+-made the home page
+
+
 ==========Week 1 (4/10/23 - 4/17/23)==========
 -Basic Login and Registration pages created
 -Login and Registration APIs Finished
 -Configured Server and Database
 -Partials Created for EJS Pages
 -Search page Created
+-Created marketplace page

@@ -138,7 +138,7 @@ app.post('/login', async (req, res) => {
           req.session.user = username;
           req.session.save();
 
-          res.status(200).send('Login Success!');
+          res.status(200).redirect('home');
           // res.redirect('home');
         }
       }
@@ -237,15 +237,49 @@ app.get('/chat', (req, res) => {
 });
 
 /*=====User Profile APIs=====*/
-app.get('/profile', (req,res) => {
-  res.render('pages/userProfile');
-});
+// app.get('/profile', async (req,res) => {
+//   const username = req.session.user;
+//   const query = `SELECT * FROM userProfile WHERE username = ${username};`;
+//   db.query(query, (err, results) => {
+//     if(err) throw err;
+//     const user = results[0];
+//     res.render('pages/userProfile', {
+//       username: user.username,
+//       bio: user.bio,
+//       zipcode: user.zipcode,
+//       fullName: user.name
+//     });
+//   });
+//   console.log(username);
+//   console.log(bio);
+//   console.log(zipcode);
+//   console.log(fullName);
+
+//     /*
+//     1.Pull user data from DB
+//       a.run SQL query
+//       b.be able to handle empty data
+//       c.put data from table into varibles
+//     2.display user data
+//     */
+
+  
+// });
+
+// app.post('/profile/edit', (req, res) => {
+
+// });
 
 /*=====Home Page APIs=====*/
 app.get('/home', (req, res) => {
   res.render('pages/home');
 });
 
+/*=====Logout API=====*/
+app.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.status(200).send("Logout Success!!");
+});
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************

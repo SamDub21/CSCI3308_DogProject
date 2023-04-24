@@ -1,0 +1,21 @@
+Meeting Date:4/24/23
+
+==========Work done from last week==========
+-Jackson
+    -created endpoints for all the pages
+    -created logout API
+    -wrote test plan for lab 11
+    -started work on profile feature (incomplete)
+        -set up DB to hold profile info
+        -created EJS page for profile
+        -started get route to fill profile info
+    -created basic home page
+-Sam
+-Bipin
+-Andy
+==========Work todo this week==========
+-Jackson
+-Sam
+-Bipin
+-Andy
+==========Genral notes==========
