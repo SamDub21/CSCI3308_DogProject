@@ -11,11 +11,15 @@ Meeting Date:4/24/23
         -started get route to fill profile info
     -created basic home page
 -Sam
+    -Finished petfinder API Call
+    -Finished SearchBar on searchpage
 -Bipin
 -Andy
 ==========Work todo this week==========
 -Jackson
 -Sam
+    -Fix petfinder api token 
+    -Work on individual pet pages
 -Bipin
 -Andy
 ==========Genral notes==========
