@@ -13,10 +13,9 @@ Meeting Date:4/24/23
     -send screenshot of homepage to TA
     -send screenshot of profile page to TA by thursday
 -Sam
-    -close to being finished on dog API calls
-        -need to set token 
-    -finished search page
-        -can filter by animal, zipcode, and 
+    -Finished petfinder API Call
+    -Finished SearchBar on searchpage
+
 -Bipin
     -made table and API call for marketplace
         -need to add more products for the database
@@ -28,6 +27,8 @@ Meeting Date:4/24/23
     -finish user profile feature
     -finish home page
 -Sam
+    -Fix petfinder api token 
+    -Work on individual pet pages
 -Bipin
 -Andy
     -make a shell for the contact page
