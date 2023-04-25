@@ -149,59 +149,60 @@ app.post('/login', async (req, res) => {
 
 /*=========Get Dogs API Call=========*/
 
-var pets = {};
+// var pets = {};
 
-pets.apiKey ="OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI";
-pets.apiSecret ="zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ";
-pets.apiToken = curl -d "grant_type=client_credentials&client_id={OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI}&client_secret={zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ}" https://api.petfinder.com/v2/oauth2/token;
-pets.petUrl = "https://api.petfinder.com/pet.find";
-pets.availablePets = $('#availablePets');
+// pets.apiKey ="OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI";
+// pets.apiSecret ="zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ";
+// pets.apiToken = curl -d "grant_type=client_credentials&client_id={OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI}&client_secret={zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ}" https://api.petfinder.com/v2/oauth2/token;
+// pets.petUrl = "https://api.petfinder.com/pet.find";
+// pets.availablePets = $('#availablePets');
 
-pets.form = function() {
-	$('#petForm').on('submit', function(e){
-		e.preventDefault();
-		var userLocation = $('.currentLocation').val();
-    var petType = $('select#petType option:checked').val();
-    var petSex = $('select#petSex option:checked').val();
-    console.log('click');
-		pets.petsCall(userLocation, petType, petSex);
-	});
-}
+// pets.form = function() {
+// 	$('#petForm').on('submit', function(e){
+// 		e.preventDefault();
+// 		var userLocation = $('.currentLocation').val();
+//     var petType = $('select#petType option:checked').val();
+//     var petSex = $('select#petSex option:checked').val();
+//     console.log('click');
+// 		pets.petsCall(userLocation, petType, petSex);
+// 	});
+// }
 
-pets.petsCall = function(userLocation, petType, petSex) {
-	console.log(userLocation, petType, petSex);
-	$.ajax({
-		url: pets.petUrl,
-		method: 'GET',
-    crossDomain: true,
-		dataType: 'jsonp',
-		data : {
-			key: pets.apiKey,
-			location: userLocation,
-      animal: petType,
-      sex: petSex,
-			format: 'json',
-			count: 10,
-			age: 'Senior',
-			status: 'A'
-		}  
-	}).then(function(results){
-  	var petResults = results.petfinder.pets.pet;
-		console.log(petResults);
-		for (var i = 0; i < petResults.length; ++i) {
-    	var petName = petResults[i].name.$t;
-      var petPhoto = petResults[i].media.photos.photo[0].$t;
-      console.log(petName);
-      console.log(petPhoto);
-    	pets.availablePets.append('<p>' + petName + '</p>');
-      pets.availablePets.append('<div><img src="' + petPhoto + '"></div>')
-  	}
-	});
-};
+// pets.petsCall = function(userLocation, petType, petSex) {
+// 	console.log(userLocation, petType, petSex);
+// 	$.ajax({
+// 		url: pets.petUrl,
+// 		method: 'GET',
+//     crossDomain: true,
+// 		dataType: 'jsonp',
+// 		data : {
+// 			key: pets.apiKey,
+// 			location: userLocation,
+//       animal: petType,
+//       sex: petSex,
+// 			format: 'json',
+// 			count: 10,
+// 			age: 'Senior',
+// 			status: 'A'
+// 		}  
+// 	}).then(function(results){
+//   	var petResults = results.petfinder.pets.pet;
+// 		console.log(petResults);
+// 		for (var i = 0; i < petResults.length; ++i) {
+//     	var petName = petResults[i].name.$t;
+//       var petPhoto = petResults[i].media.photos.photo[0].$t;
+//       console.log(petName);
+//       console.log(petPhoto);
+//     	pets.availablePets.append('<p>' + petName + '</p>');
+//       pets.availablePets.append('<div><img src="' + petPhoto + '"></div>')
+//   	}
+// 	});
+// };
 
-$(document).ready(function() {
-	pets.form();
-});
+// $(document).ready(function() {
+// 	pets.form();
+// });
+
 /*=====Authentication Middleware=====*/
 const auth = (req, res, next) => {
   if(!req.session.user){
@@ -264,11 +265,6 @@ app.get('/chat', (req, res) => {
 //     */
 
   
-// });
-
-// app.post('/profile/edit', (req, res) => {
-
-// });
 
 /*=====Home Page APIs=====*/
 app.get('/home', (req, res) => {
