@@ -10,12 +10,27 @@ Meeting Date:4/24/23
         -created EJS page for profile
         -started get route to fill profile info
     -created basic home page
+    -send screenshot of homepage to TA
+    -send screenshot of profile page to TA by thursday
 -Sam
+    -close to being finished on dog API calls
+        -need to set token 
+    -finished search page
+        -can filter by animal, zipcode, and 
 -Bipin
+    -made table and API call for marketplace
+        -need to add more products for the database
 -Andy
+    -debugging error with gmail API 
+        -once fixed should be simple
 ==========Work todo this week==========
 -Jackson
+    -finish user profile feature
+    -finish home page
 -Sam
 -Bipin
 -Andy
+    -make a shell for the contact page
 ==========Genral notes==========
+-Finish work that is already assigned
+-Get ready for presentations
