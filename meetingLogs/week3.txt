@@ -15,7 +15,6 @@ Meeting Date:4/24/23
 -Sam
     -Finished petfinder API Call
     -Finished SearchBar on searchpage
-
 -Bipin
     -made table and API call for marketplace
         -need to add more products for the database
