@@ -5,11 +5,3 @@ CREATE TABLE IF NOT EXISTS users(
     lastName VARCHAR(50),
     email VARCHAR(50)
 );
-
-CREATE TABLE IF NOT EXISTS userProfile(
-    username VARCHAR(50) UNIQUE,
-    bio VARCHAR(250),
-    zipcode VARCHAR(100),
-    name VARCHAR(50),
-    FOREIGN KEY (username) REFERENCES users(username)
-);
