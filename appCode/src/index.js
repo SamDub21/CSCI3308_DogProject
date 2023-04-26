@@ -134,12 +134,22 @@ app.post('/login', async (req, res) => {
           res.status(401).json({error : 'Incorrect password'});
         }
         else{
-          //setting session variable
-          req.session.user = username;
-          req.session.save();
+          //setting session variables
+          const query2 = 'SELECT * FROM users where username = $1;'
+          db.one(query2, [username])
+          .then((data) => {
+            req.session.user = username;
+            req.session.firstName = data.firstName;
+            req.session.lastName = data.lastName;
+            req.session.email = data.email;
 
-          res.status(200).redirect('home');
-          // res.redirect('home');
+            req.session.save();
+            //send user to homepage
+            res.status(200).redirect('home');
+          })
+          .catch((err) => {
+            console.error(err);
+          });
         }
       }
     });
@@ -212,16 +222,6 @@ const auth = (req, res, next) => {
 };
 app.use(auth);
 
-
-/*=====Authentication Middleware=====*/
-const auth = (req, res, next) => {
-  if(!req.session.user){
-    return res.redirect('login');
-  }
-  next();
-};
-app.use(auth);
-
 /*=====Marketplace APIS=====*/
 app.get('/market', (req, res) => {
   res.render('pages/marketplace');
@@ -238,31 +238,13 @@ app.get('/chat', (req, res) => {
 });
 
 /*=====User Profile APIs=====*/
-// app.get('/profile', async (req,res) => {
-//   const username = req.session.user;
-//   const query = `SELECT * FROM userProfile WHERE username = ${username};`;
-//   db.query(query, (err, results) => {
-//     if(err) throw err;
-//     const user = results[0];
-//     res.render('pages/userProfile', {
-//       username: user.username,
-//       bio: user.bio,
-//       zipcode: user.zipcode,
-//       fullName: user.name
-//     });
-//   });
-//   console.log(username);
-//   console.log(bio);
-//   console.log(zipcode);
-//   console.log(fullName);
-
-//     /*
-//     1.Pull user data from DB
-//       a.run SQL query
-//       b.be able to handle empty data
-//       c.put data from table into varibles
-//     2.display user data
-//     */
+app.get('/profile', async (req,res) => {
+  const username = req.session.user; //getting session user
+  const fname = req.session.firstName;
+  const lname = req.session.lastName;
+  const addr = req.session.email;
+  res.render('pages/userProfile', {user : username, first : JSON.stringify(fname), last : JSON.stringify(lname), email : addr});
+});
 
   
 

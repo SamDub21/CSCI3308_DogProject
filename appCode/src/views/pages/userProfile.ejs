@@ -1,5 +1,20 @@
-<%- include ('../partials/header') %> <%- include ('../partials/menu') %>
+<%- include ('../partials/header') %> 
+<%- include ('../partials/menu') %>
 <main>
-    <h1>Welcome <%= username %></h1>
+    <h1>User Profile</h1>
+    <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            Username : <%= user %>
+          </div>
+          <div class="col">
+            first name : <%= first %>
+            last name : <%= last %>
+          </div>
+          <div class="col">
+            email : <%= email %>
+          </div>
+        </div>
+      </div>
 </main>
 <%- include ('../partials/footer') %>
