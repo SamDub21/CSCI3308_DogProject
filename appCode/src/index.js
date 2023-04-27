@@ -42,6 +42,8 @@ db.connect()
 app.set('view engine', 'ejs'); // set the view engine to EJS
 app.use(bodyParser.json()); // specify the usage of JSON for parsing request body.
 
+app.use(express.static('resources'))
+
 // initialize session variables
 app.use(
   session({
@@ -56,7 +58,6 @@ app.use(
     extended: true,
   })
 );
-
 // *****************************************************
 // <!-- Section 4 : API Routes -->
 // *****************************************************
@@ -91,6 +92,7 @@ app.post('/register', async (req, res) => {
 
   //hash the password using bcrypt library
   const hash = await bcrypt.hash(password, 10);
+  console.log(hash)
 
 
   //adding new user to DB
@@ -148,14 +150,14 @@ app.post('/login', async (req, res) => {
 
 
 /*=========Get Dogs API Call=========*/
-
+/*
 var pets = {};
 
 pets.apiKey ="OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI";
 pets.apiSecret ="zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ";
-pets.apiToken = curl -d "grant_type=client_credentials&client_id={OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI}&client_secret={zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ}" https://api.petfinder.com/v2/oauth2/token;
+pets.apiToken = 'curl -d "grant_type=client_credentials&client_id={OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI}&client_secret={zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ}" https://api.petfinder.com/v2/oauth2/token';
 pets.petUrl = "https://api.petfinder.com/pet.find";
-pets.availablePets = $('#availablePets');
+pets.availablePets = "$('#availablePets')";
 
 pets.form = function() {
 	$('#petForm').on('submit', function(e){
@@ -202,16 +204,7 @@ pets.petsCall = function(userLocation, petType, petSex) {
 $(document).ready(function() {
 	pets.form();
 });
-/*=====Authentication Middleware=====*/
-const auth = (req, res, next) => {
-  if(!req.session.user){
-    return res.redirect('login');
-  }
-  next();
-};
-app.use(auth);
-
-
+*/
 /*=====Authentication Middleware=====*/
 const auth = (req, res, next) => {
   if(!req.session.user){
@@ -232,8 +225,38 @@ app.get('/search', (req, res) => {
 });
 
 /*=====Messaging Page APIs=====*/
-app.get('/chat', (req, res) => {
-  res.render('pages/contact');
+
+const user_messages = `
+  SELECT
+      messages.username_from,
+      messages.username_to,
+      messages.subject,
+      messages.message,
+      messages.message_date,
+      users.firstName,
+      users.lastName
+    FROM messages
+      INNER JOIN users ON messages.username_from = users.username
+    WHERE username_to = $1;`;
+
+app.get("/messages", (req, res) => {
+
+  db.any(user_messages, [req.session.user])
+    .then((messages) => {
+      messages.forEach(element => {
+        console.log(element.firstname);
+      });
+      res.render("pages/messages", {
+        messages
+      });
+    })
+    .catch((err) => {
+      res.render("pages/messages", {
+        messages: [],
+        error: true,
+        message: err.message,
+      });
+    });
 });
 
 /*=====User Profile APIs=====*/
