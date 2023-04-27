@@ -149,7 +149,7 @@ app.post('/login', async (req, res) => {
 
 /*=========Get Dogs API Call=========*/
 
-// var pets = {};
+var pets = {};
 
 pets.apiKey ="OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI";
 pets.apiSecret ="zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ";
