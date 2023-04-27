@@ -153,7 +153,7 @@ var pets = {};
 
 pets.apiKey ="OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI";
 pets.apiSecret ="zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ";
-pets.apiToken = curl -d "grant_type=client_credentials&client_id={OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI}&client_secret={zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ}" https://api.petfinder.com/v2/oauth2/token;
+pets.apiToken = 'curl -d "grant_type=client_credentials&client_id={OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI}&client_secret={zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ}" https://api.petfinder.com/v2/oauth2/token';
 pets.petUrl = "https://api.petfinder.com/pet.find";
 pets.availablePets = $('#availablePets');
 
@@ -202,16 +202,6 @@ pets.petsCall = function(userLocation, petType, petSex) {
 $(document).ready(function() {
 	pets.form();
 });
-/*=====Authentication Middleware=====*/
-const auth = (req, res, next) => {
-  if(!req.session.user){
-    return res.redirect('login');
-  }
-  next();
-};
-app.use(auth);
-
-
 /*=====Authentication Middleware=====*/
 const auth = (req, res, next) => {
   if(!req.session.user){
