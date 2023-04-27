@@ -139,8 +139,8 @@ app.post('/login', async (req, res) => {
           db.one(query2, [username])
           .then((data) => {
             req.session.user = username;
-            req.session.firstName = data.firstName;
-            req.session.lastName = data.lastName;
+            req.session.firstName = data.firstname;
+            req.session.lastName = data.lastname;
             req.session.email = data.email;
 
             req.session.save();
@@ -243,7 +243,7 @@ app.get('/profile', async (req,res) => {
   const fname = req.session.firstName;
   const lname = req.session.lastName;
   const addr = req.session.email;
-  res.render('pages/userProfile', {user : username, first : JSON.stringify(fname), last : JSON.stringify(lname), email : addr});
+  res.render('pages/userProfile', {user : username, first : fname, last : lname, email : addr});
 });
 
   
@@ -256,7 +256,7 @@ app.get('/home', (req, res) => {
 /*=====Logout API=====*/
 app.get("/logout", (req, res) => {
   req.session.destroy();
-  res.status(200).send("Logout Success!!");
+  res.status(200).send("Logout Success!!"); //change to redirect to login page
 });
 // *****************************************************
 // <!-- Section 5 : Start Server-->
