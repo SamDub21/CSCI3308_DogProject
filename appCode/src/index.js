@@ -226,7 +226,7 @@ app.get('/search', (req, res) => {
 
 /*=====Messaging Page APIs=====*/
 
-const user_messages = `
+const user_inbox_messages = `
   SELECT
       messages.username_from,
       messages.username_to,
@@ -239,19 +239,17 @@ const user_messages = `
       INNER JOIN users ON messages.username_from = users.username
     WHERE username_to = $1;`;
 
-app.get("/messages", (req, res) => {
+app.get("/messages_inbox", (req, res) => {
 
-  db.any(user_messages, [req.session.user])
+  db.any(user_inbox_messages, [req.session.user])
     .then((messages) => {
-      messages.forEach(element => {
-        console.log(element.firstname);
-      });
-      res.render("pages/messages", {
+      res.locals.user = req.session.user;
+      res.render("pages/messages_inbox", {
         messages
       });
     })
     .catch((err) => {
-      res.render("pages/messages", {
+      res.render("pages/messages_inbox", {
         messages: [],
         error: true,
         message: err.message,
@@ -259,6 +257,40 @@ app.get("/messages", (req, res) => {
     });
 });
 
+const user_sent_messages = `
+SELECT
+    messages.username_from,
+    messages.username_to,
+    messages.subject,
+    messages.message,
+    messages.message_date,
+    users.firstName,
+    users.lastName
+  FROM messages
+    INNER JOIN users ON messages.username_to = users.username
+  WHERE username_from = $1;`;
+  
+app.get("/messages_sent", (req, res) => {
+
+  db.any(user_sent_messages, [req.session.user])
+    .then((messages) => {
+      res.locals.user = req.session.user;
+      res.render("pages/messages_sent", {
+        messages
+      });
+    })
+    .catch((err) => {
+      res.render("pages/messages_sent", {
+        messages: [],
+        error: true,
+        message: err.message,
+      });
+    });
+});
+
+app.get("/messages_compose", (req, res) => {
+  res.render("pages/messages_compose");
+});
 /*=====User Profile APIs=====*/
 // app.get('/profile', async (req,res) => {
 //   const username = req.session.user;
