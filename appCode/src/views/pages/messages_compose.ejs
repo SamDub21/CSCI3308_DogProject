@@ -35,15 +35,16 @@
                       <div class="row align-items-stretch no-gutters contact-wrap">
                         <div class="col-md-12">
                           <div class="form h-100">
-                            <form class="mb-5" method="post" id="contactForm" name="contactForm">
+
+                            <form class="mb-5" action="/message_send" method="post" id="sendMessage" name="sendMessage">
                               <div class="row">
                                   <label for="" class="col-form-label">Recipient *</label>
-                                  <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
+                                  <input type="text" class="form-control" name="username_to" id="username_to" placeholder="Recipient's Username">
                                 </div>
 
                                 <div class="row" style="margin-top: 10px;">
                                   <label for="" class="col-form-label">Subject *</label>
-                                  <input type="text" class="form-control" name="email" id="email"  placeholder="Your email">
+                                  <input type="text" class="form-control" name="subject" id="subject"  placeholder="Message Subject">
                                 </div>
                 
                               <div class="row" style="margin-top: 10px;">
@@ -54,7 +55,6 @@
                               <div class="row" style="margin-top: 25px;">
                                 <div class="col-md-12 form-group" style="border-radius: 5px;">
                                   <input type="submit" value="Send Message" class="btn btn-primary py-2 px-4" style="border-radius: 7px;">
-                                  <span class="submitting"></span>
                                 </div>
 
                               </div>

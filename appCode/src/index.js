@@ -270,9 +270,9 @@ SELECT
     INNER JOIN users ON messages.username_to = users.username
   WHERE username_from = $1;`;
   
-app.get("/messages_sent", (req, res) => {
+app.get("/messages_sent", async (req, res) => {
 
-  db.any(user_sent_messages, [req.session.user])
+  await db.any(user_sent_messages, [req.session.user])
     .then((messages) => {
       res.locals.user = req.session.user;
       res.render("pages/messages_sent", {
@@ -291,6 +291,35 @@ app.get("/messages_sent", (req, res) => {
 app.get("/messages_compose", (req, res) => {
   res.render("pages/messages_compose");
 });
+
+app.post('/message_send', async (req, res) => {
+
+  const username_from = await req.session.user;
+  const username_to = await req.body.username_to;
+  const subject  = await req.body.subject;
+  const message = await req.body.message;
+  const message_date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+  const query = "INSERT INTO messages (username_to, username_from, subject, message, message_date) VALUES ($1, $2, $3, $4, $5);";
+  const values = [username_to, username_from, subject, message, message_date];
+
+  // get the student_id based on the emailid
+  await db.query(query, values)
+    .then((data) => {
+
+      res.redirect("/messages_compose");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect("/messages_compose");
+    });
+
+    await db.any("SELECT * FROM messages", [req.session.user])
+    .then((data) => {
+      console.log(data);
+    });
+});
+
 /*=====User Profile APIs=====*/
 // app.get('/profile', async (req,res) => {
 //   const username = req.session.user;
