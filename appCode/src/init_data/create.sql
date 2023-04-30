@@ -5,3 +5,9 @@ CREATE TABLE IF NOT EXISTS users(
     lastName VARCHAR(50),
     email VARCHAR(50)
 );
+
+-- CREATE TABLE IF NOT EXISTS profileImages(
+--     username VARCHAR(50),
+--     image_data BLOB,
+--     FOREIGN KEY (username) REFERENCES users(username)
+-- );
