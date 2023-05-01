@@ -6,15 +6,6 @@ CREATE TABLE IF NOT EXISTS users(
     email VARCHAR(50)
 );
 
-
-CREATE TABLE IF NOT EXISTS userProfile(
-    username VARCHAR(50) UNIQUE,
-    bio VARCHAR(250),
-    zipcode VARCHAR(100),
-    name VARCHAR(50),
-    FOREIGN KEY (username) REFERENCES users(username)
-);
-
 CREATE TABLE IF NOT EXISTS messages(
     username_to VARCHAR(50),
     username_from VARCHAR(50),
