@@ -361,7 +361,7 @@ app.get('/editProfile', async (req, res) => {
 app.post('/editProfile', async (req, res) => {
   //validating given info
   const{firstName, lastName, email, profileImg} = req.body
-  if(firstName == null || lastName == null|| email == null|| profileImg == null){
+  if(!firstName || !lastName|| !email|| !profileImg){
     return res.status(400).json({error : 'One or more fields missing'});
   }
   //updating DB
@@ -370,16 +370,16 @@ app.post('/editProfile', async (req, res) => {
   await db.query(query, [firstName, lastName, email, profileImg, user])
   .then((data) => {
     //updating session vars
-    req.session.firstName = data.firstname;
-    req.session.lastName = data.lastname;
-    req.session.email = data.email;
-    req.session.profilePic = data.img;
+    req.session.firstName = firstName;
+    req.session.lastName = lastName;
+    req.session.email = email;
+    req.session.profilePic = profileImg;
     req.session.save();
 
-    res.redirect('profile');
+    res.render('pages/userProfile', {user : user, first : firstName, last : lastName, email : email, img : profileImg});
   })
   .catch((err) => {
-    console.error(error);
+    console.error(err);
     res.status(500).json({error : 'Server Error'});
   });
 });
