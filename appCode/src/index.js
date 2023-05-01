@@ -43,6 +43,8 @@ app.set('view engine', 'ejs'); // set the view engine to EJS
 app.use(bodyParser.json()); // specify the usage of JSON for parsing request body.
 app.use('/resources/', express.static('./resources'));
 
+app.use(express.static('resources'))
+
 // initialize session variables
 app.use(
   session({
@@ -57,7 +59,6 @@ app.use(
     extended: true,
   })
 );
-
 // *****************************************************
 // <!-- Section 4 : API Routes -->
 // *****************************************************
@@ -92,6 +93,7 @@ app.post('/register', async (req, res) => {
 
   //hash the password using bcrypt library
   const hash = await bcrypt.hash(password, 10);
+  console.log(hash)
 
 
   //adding new user to DB
@@ -160,13 +162,16 @@ app.post('/login', async (req, res) => {
 
 /*=========Get Dogs API Call=========*/
 
-// var pets = {};
+/*
+var pets = {};
 
-// pets.apiKey ="OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI";
-// pets.apiSecret ="zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ";
-// pets.apiToken = curl -d "grant_type=client_credentials&client_id={OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI}&client_secret={zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ}" https://api.petfinder.com/v2/oauth2/token;
-// pets.petUrl = "https://api.petfinder.com/pet.find";
-// pets.availablePets = $('#availablePets');
+pets.apiKey ="OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI";
+pets.apiSecret ="zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ";
+pets.apiToken = 'curl -d "grant_type=client_credentials&client_id={OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI}&client_secret={zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ}" https://api.petfinder.com/v2/oauth2/token';
+pets.petUrl = "https://api.petfinder.com/pet.find";
+
+//pets.availablePets = $('#availablePets');
+
 
 // pets.form = function() {
 // 	$('#petForm').on('submit', function(e){
@@ -234,8 +239,94 @@ app.get('/search', (req, res) => {
 });
 
 /*=====Messaging Page APIs=====*/
-app.get('/chat', (req, res) => {
-  res.render('pages/contact');
+
+const user_inbox_messages = `
+  SELECT
+      messages.username_from,
+      messages.username_to,
+      messages.subject,
+      messages.message,
+      messages.message_date,
+      users.firstName,
+      users.lastName
+    FROM messages
+      INNER JOIN users ON messages.username_from = users.username
+    WHERE username_to = $1;`;
+
+app.get("/messages_inbox", (req, res) => {
+
+  db.any(user_inbox_messages, [req.session.user])
+    .then((messages) => {
+      res.locals.user = req.session.user;
+      res.render("pages/messages_inbox", {
+        messages
+      });
+    })
+    .catch((err) => {
+      res.render("pages/messages_inbox", {
+        messages: [],
+        error: true,
+        message: err.message,
+      });
+    });
+});
+
+const user_sent_messages = `
+SELECT
+    messages.username_from,
+    messages.username_to,
+    messages.subject,
+    messages.message,
+    messages.message_date,
+    users.firstName,
+    users.lastName
+  FROM messages
+    INNER JOIN users ON messages.username_to = users.username
+  WHERE username_from = $1;`;
+  
+app.get("/messages_sent", async (req, res) => {
+
+  await db.any(user_sent_messages, [req.session.user])
+    .then((messages) => {
+      res.locals.user = req.session.user;
+      res.render("pages/messages_sent", {
+        messages
+      });
+    })
+    .catch((err) => {
+      res.render("pages/messages_sent", {
+        messages: [],
+        error: true,
+        message: err.message,
+      });
+    });
+});
+
+app.get("/messages_compose", (req, res) => {
+  res.render("pages/messages_compose");
+});
+
+app.post('/message_send', async (req, res) => {
+
+  const username_from = await req.session.user;
+  const username_to = await req.body.username_to;
+  const subject  = await req.body.subject;
+  const message = await req.body.message;
+  const message_date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+  const query = "INSERT INTO messages (username_to, username_from, subject, message, message_date) VALUES ($1, $2, $3, $4, $5);";
+  const values = [username_to, username_from, subject, message, message_date];
+
+  // get the student_id based on the emailid
+  await db.query(query, values)
+    .then((data) => {
+
+      res.redirect("/messages_compose");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect("/messages_compose");
+    });
 });
 
 /*=====User Profile APIs=====*/

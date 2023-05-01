@@ -6,14 +6,21 @@ CREATE TABLE IF NOT EXISTS users(
     email VARCHAR(50)
 );
 
--- CREATE TABLE IF NOT EXISTS articles(
---     id SERIAL PRIMARY KEY UNIQUE,
---     article_name VARCHAR(1000),
---     link VARCHAR(1000)
--- );
 
--- INSERT INTO articles (article_name, link) 
---     VALUES ('Adopting a Rescue Dog: The Ins and Outs and What to Expect', 'https://www.aspcapetinsurance.com/resources/ins-and-outs-of-adopting-a-dog/'),
---     ('General Dog Care','https://www.aspca.org/pet-care/dog-care/general-dog-care'),
---     ('6 Winter Safety Tips for Dogs in the Snow', 'https://www.purina.com/articles/dog/care/winter-safety-tips-for-dogs-in-snow'),
---     ('14 Tips for First-Time Dog Owners', 'https://www.dailypaws.com/dogs-puppies/dog-adoption/first-time-dog-owner-tips');
+CREATE TABLE IF NOT EXISTS userProfile(
+    username VARCHAR(50) UNIQUE,
+    bio VARCHAR(250),
+    zipcode VARCHAR(100),
+    name VARCHAR(50),
+    FOREIGN KEY (username) REFERENCES users(username)
+);
+
+CREATE TABLE IF NOT EXISTS messages(
+    username_to VARCHAR(50),
+    username_from VARCHAR(50),
+    subject VARCHAR(100),
+    message VARCHAR(500),
+    message_date TIMESTAMP,
+    FOREIGN KEY (username_from) REFERENCES users(username)
+);
+

@@ -1,0 +1,65 @@
+<%- include ('../partials/header') %> 
+<%- include ('../partials/menu') %>
+<main>
+  <div class="container" style="margin-top: 2%;">
+      <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-primary rounded box-shadow">
+          <div class="lh-100">
+            <h3 class="mb-0 text-white lh-100">Messages Sent by <%= user %></h3>
+              
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+              <ul class="nav nav-pills" id="myTab" role="tablist">
+                  <li id="ctl00_ContentPlaceHolder1_liInbox" class="nav-item" role="presentation">
+                    <a href="/messages_inbox" style="text-decoration: none;"><button class="nav-link" id="pills-inbox-tab"type="button">Inbox</button></a>
+                  </li>
+                  <li id="ctl00_ContentPlaceHolder1_liCompose" class="nav-item" role="presentation">
+                    <a href="/messages_compose" style="text-decoration: none;"><button class="nav-link" id="pills-compose-tab" type="button">Compose</button></a>
+                  </li>
+                  <li id="ctl00_ContentPlaceHolder1_liSent" class="nav-item" role="presentation">
+                      <button class="nav-link active" id="pills-sent-tab" type="button">Sent</button>
+                  </li>
+                  
+              </ul>
+          </div>
+          <div class="card-body">
+              <div class="tab-content">
+
+
+                <!-- SENT SECTION -->
+                  <div class="tab-pane fade show active" id="sent">
+                      <div class="list-group">
+                          <% messages.forEach(message => { %>
+                                
+                            <div class="list-group-item" style="text-align: left;">
+                            <div class="row">
+                                <div class="col-lg-11">
+                                    <div class="d-flex w-100 justify-content-between" style="border-bottom: 1px solid lightgray; margin-bottom: 10px; margin-top: 5px;">
+                                        <h4 class="mb-1"><%= message.firstname %> <%= message.lastname %></h4>
+                                        <p><%= String(message.message_date).substring(0,24) %></p>
+                                    </div>
+                                    <div class="subject">
+                                        <p class="list-group-item-text" style="font-size: large;">
+                                            <strong><%= message.subject %></strong>
+                                        </p>
+                                    </div>
+
+                                    <div class="message_content" >
+                                        <p><%= message.message %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                          <% }) %>    
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</main>
+<%- include ('../partials/footer') %>
