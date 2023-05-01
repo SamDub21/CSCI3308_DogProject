@@ -3,7 +3,9 @@ CREATE TABLE IF NOT EXISTS users(
     password VARCHAR(60) NOT NULL,
     firstName VARCHAR(50),
     lastName VARCHAR(50),
-    email VARCHAR(50)
+    email VARCHAR(50),
+    img TEXT
+
 );
 
 CREATE TABLE IF NOT EXISTS messages(
