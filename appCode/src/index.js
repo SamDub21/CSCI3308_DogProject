@@ -247,8 +247,6 @@ app.get('/profile', async (req,res) => {
   res.render('pages/userProfile', {user : username, first : fname, last : lname, email : addr});
 });
 
-  
-
 /*=====Home Page APIs=====*/
 app.get('/home', (req, res) => {
   res.render('pages/home');
