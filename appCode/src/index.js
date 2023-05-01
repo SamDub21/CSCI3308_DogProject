@@ -80,8 +80,8 @@ app.get('/register', (req, res) =>{
 
 app.post('/register', async (req, res) => {
   //get and validate user data
-  const {username, firstName, lastName, email, password} = req.body;
-  if(!username || !firstName || !lastName || !email ||!password){
+  const {username, firstName, lastName, email, profileImg, password} = req.body;
+  if(!username || !firstName || !lastName || !email || !profileImg || !password){
     return res.status(400).json({error : 'One or more fields missing'});
   }
 
@@ -98,8 +98,8 @@ app.post('/register', async (req, res) => {
 
   //adding new user to DB
   try{
-    const insertQuery = 'INSERT INTO users (username, email, firstName, lastName, password) VALUES ($1, $2, $3, $4, $5);'
-    await db.none(insertQuery, [username, email, firstName, lastName, hash]);
+    const insertQuery = 'INSERT INTO users (username, email, firstName, lastName, img, password) VALUES ($1, $2, $3, $4, $5, $6);'
+    await db.none(insertQuery, [username, email, firstName, lastName, profileImg, hash]);
     res.status(200).redirect('login');
   }catch (error){
     console.error(error);
@@ -145,6 +145,7 @@ app.post('/login', async (req, res) => {
             req.session.firstName = data.firstname;
             req.session.lastName = data.lastname;
             req.session.email = data.email;
+            req.session.profilePic = data.img;
 
             req.session.save();
             //send user to homepage
@@ -335,7 +336,8 @@ app.get('/profile', async (req,res) => {
   const fname = req.session.firstName;
   const lname = req.session.lastName;
   const addr = req.session.email;
-  res.render('pages/userProfile', {user : username, first : fname, last : lname, email : addr});
+  const profileImg = req.session.profilePic;
+  res.render('pages/userProfile', {user : username, first : fname, last : lname, email : addr, img : profileImg});
 });
 
 /*=====Home Page APIs=====*/
