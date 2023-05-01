@@ -22,11 +22,3 @@ CREATE TABLE IF NOT EXISTS messages(
     message_date TIMESTAMP,
     FOREIGN KEY (username_from) REFERENCES users(username)
 );
-
--- Dummy message data for testing
-INSERT INTO users (username, password, firstName, lastName, email) VALUES
-    ('angu8719', '$2b$10$mrvBFCtjnry9/RKk/qiAje52/jylC8IpZzHAZ5iVMWKIaUp9oesoq', 'Andrew', 'Gusty', 'angu8719@colorado.edu');
-
-INSERT INTO messages (username_to, username_from, subject, message, message_date) VALUES
-    ('angu8719', 'angu8719', 'Hello', 'Hi', '2016-06-22 19:10:25-07'),
-    ('angu8719', 'angu8719', 'Goodbye', 'Bye', '2023-06-22 19:10:25-07');

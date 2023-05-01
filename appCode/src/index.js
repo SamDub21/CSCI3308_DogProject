@@ -314,11 +314,6 @@ app.post('/message_send', async (req, res) => {
       console.log(err);
       res.redirect("/messages_compose");
     });
-
-    await db.any("SELECT * FROM messages", [req.session.user])
-    .then((data) => {
-      console.log(data);
-    });
 });
 
 /*=====User Profile APIs=====*/
