@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS users(
     email VARCHAR(50)
 );
 
+
 CREATE TABLE IF NOT EXISTS userProfile(
     username VARCHAR(50) UNIQUE,
     bio VARCHAR(250),
@@ -22,3 +23,4 @@ CREATE TABLE IF NOT EXISTS messages(
     message_date TIMESTAMP,
     FOREIGN KEY (username_from) REFERENCES users(username)
 );
+

@@ -41,6 +41,7 @@ db.connect()
 
 app.set('view engine', 'ejs'); // set the view engine to EJS
 app.use(bodyParser.json()); // specify the usage of JSON for parsing request body.
+app.use('/resources/', express.static('./resources'));
 
 app.use(express.static('resources'))
 
@@ -136,12 +137,22 @@ app.post('/login', async (req, res) => {
           res.status(401).json({error : 'Incorrect password'});
         }
         else{
-          //setting session variable
-          req.session.user = username;
-          req.session.save();
+          //setting session variables
+          const query2 = 'SELECT * FROM users where username = $1;'
+          db.one(query2, [username])
+          .then((data) => {
+            req.session.user = username;
+            req.session.firstName = data.firstname;
+            req.session.lastName = data.lastname;
+            req.session.email = data.email;
 
-          res.status(200).redirect('home');
-          // res.redirect('home');
+            req.session.save();
+            //send user to homepage
+            res.status(200).redirect('home');
+          })
+          .catch((err) => {
+            console.error(err);
+          });
         }
       }
     });
@@ -150,6 +161,7 @@ app.post('/login', async (req, res) => {
 
 
 /*=========Get Dogs API Call=========*/
+
 /*
 var pets = {};
 
@@ -159,6 +171,7 @@ pets.apiToken = 'curl -d "grant_type=client_credentials&client_id={OCvLf7EtbC6ZY
 pets.petUrl = "https://api.petfinder.com/pet.find";
 
 //pets.availablePets = $('#availablePets');
+
 
 // pets.form = function() {
 // 	$('#petForm').on('submit', function(e){
@@ -317,38 +330,13 @@ app.post('/message_send', async (req, res) => {
 });
 
 /*=====User Profile APIs=====*/
-// app.get('/profile', async (req,res) => {
-//   const username = req.session.user;
-//   const query = `SELECT * FROM userProfile WHERE username = ${username};`;
-//   db.query(query, (err, results) => {
-//     if(err) throw err;
-//     const user = results[0];
-//     res.render('pages/userProfile', {
-//       username: user.username,
-//       bio: user.bio,
-//       zipcode: user.zipcode,
-//       fullName: user.name
-//     });
-//   });
-//   console.log(username);
-//   console.log(bio);
-//   console.log(zipcode);
-//   console.log(fullName);
-
-//     /*
-//     1.Pull user data from DB
-//       a.run SQL query
-//       b.be able to handle empty data
-//       c.put data from table into varibles
-//     2.display user data
-//     */
-
-  
-// });
-
-// app.post('/profile/edit', (req, res) => {
-
-// });
+app.get('/profile', async (req,res) => {
+  const username = req.session.user; //getting session user
+  const fname = req.session.firstName;
+  const lname = req.session.lastName;
+  const addr = req.session.email;
+  res.render('pages/userProfile', {user : username, first : fname, last : lname, email : addr});
+});
 
 /*=====Home Page APIs=====*/
 app.get('/home', (req, res) => {
@@ -358,7 +346,7 @@ app.get('/home', (req, res) => {
 /*=====Logout API=====*/
 app.get("/logout", (req, res) => {
   req.session.destroy();
-  res.status(200).send("Logout Success!!");
+  res.status(200).send("Logout Success!!"); //change to redirect to login page
 });
 // *****************************************************
 // <!-- Section 5 : Start Server-->
