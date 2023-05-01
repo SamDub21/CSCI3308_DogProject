@@ -359,7 +359,29 @@ app.get('/editProfile', async (req, res) => {
 });
 
 app.post('/editProfile', async (req, res) => {
+  //validating given info
+  const{firstName, lastName, email, profileImg} = req.body
+  if(firstName == null || lastName == null|| email == null|| profileImg == null){
+    return res.status(400).json({error : 'One or more fields missing'});
+  }
+  //updating DB
+  const query = `UPDATE users SET firstname = $1, lastname = $2, email = $3, img = $4 WHERE username = $5;`
+  const user = req.session.user;
+  await db.query(query, [firstName, lastName, email, profileImg, user])
+  .then((data) => {
+    //updating session vars
+    req.session.firstName = data.firstname;
+    req.session.lastName = data.lastname;
+    req.session.email = data.email;
+    req.session.profilePic = data.img;
+    req.session.save();
 
+    res.redirect('profile');
+  })
+  .catch((err) => {
+    console.error(error);
+    res.status(500).json({error : 'Server Error'});
+  });
 });
 
 /*=====Home Page APIs=====*/
