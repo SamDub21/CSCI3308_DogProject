@@ -1,5 +1,5 @@
 =========Week 3 (4/24/23 - 5/1/23)==========
--edited login API to set more session vars upon login
+-edited login API to set more session variables upon login
 -Added Formating to home page
 -Added user profile image
 -Users can now edit profile information
