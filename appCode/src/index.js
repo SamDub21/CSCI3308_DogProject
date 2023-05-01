@@ -392,7 +392,7 @@ app.get('/home', (req, res) => {
 /*=====Logout API=====*/
 app.get("/logout", (req, res) => {
   req.session.destroy();
-  res.status(200).redirect('login'); //change to redirect to login page
+  res.status(200).redirect('login');
 });
 // *****************************************************
 // <!-- Section 5 : Start Server-->

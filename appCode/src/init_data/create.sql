@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS users(
     lastName VARCHAR(50),
     email VARCHAR(50),
     img TEXT
+
 );
 
 CREATE TABLE IF NOT EXISTS messages(
