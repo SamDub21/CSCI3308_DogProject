@@ -1,0 +1,28 @@
+<%- include ('../partials/header') %> 
+<%- include ('../partials/menu') %>
+<main>
+    <div class="container">
+        <h1>Edit Profile</h1>
+        <form action="/editProfile" method="POST">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" name="firstName" class="form-control" id="firstName" value="<%= first %>">
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" name="lastName" class="form-control" id="lastName" value="<%= last %>">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="text" name="email" class="form-control" id="email" value="<%= email %>">
+            </div>
+            <div class="form-group">
+              <label for="profileImg">Profile Picture</label>
+              <input type="text" name="profileImg" class="form-control" id="profileImg" value="<%= img %>">
+            </div>
+            <small id="gotoProfile" class="form-text text-muted"><a href="/profile">Discard Changes</a></small>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+</main>
+<%- include ('../partials/footer') %>

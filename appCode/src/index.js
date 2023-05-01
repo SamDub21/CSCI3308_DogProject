@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session'); // To set the session object. To store or access session data, use the `req.session`, which is (generally) serialized as JSON by the store.
 const bcrypt = require('bcrypt'); //  To hash passwords
 const axios = require('axios'); // To make HTTP requests from our server. We'll learn more about it in Part B.
+const ejs = require('ejs');
 
 // *****************************************************
 // <!-- Section 2 : Connect to DB -->
@@ -338,6 +339,27 @@ app.get('/profile', async (req,res) => {
   const addr = req.session.email;
   const profileImg = req.session.profilePic;
   res.render('pages/userProfile', {user : username, first : fname, last : lname, email : addr, img : profileImg});
+});
+
+app.get('/editProfile', async (req, res) => {
+  //getting sessions vars
+  const fname = req.session.firstName;
+  const lname = req.session.lastName;
+  const addr = req.session.email;
+  const profileImg = req.session.profilePic;
+
+  ejs.renderFile('views/pages/editUserProfile.ejs', {first : fname, last : lname, email : addr, img : profileImg}, (err, html) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.send(html);
+    }
+  });
+});
+
+app.post('/editProfile', async (req, res) => {
+
 });
 
 /*=====Home Page APIs=====*/
