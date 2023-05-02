@@ -94,8 +94,6 @@ app.post('/register', async (req, res) => {
 
   //hash the password using bcrypt library
   const hash = await bcrypt.hash(password, 10);
-  console.log(hash)
-
 
   //adding new user to DB
   try{
