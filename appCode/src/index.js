@@ -166,9 +166,7 @@ app.get('/marketplace', (req, res) => {
   const query = `SELECT * FROM PRODUCTS`;
   db.any(query)
   .then(data=>{
-
-    console.log(data);
-      res.render("pages/marketplace", {products: data})})
+    res.render("pages/marketplace", {products: data})})
   });
 
 // app.post()
