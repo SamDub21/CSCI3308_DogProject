@@ -1,0 +1,7 @@
+Meeting Date: 4-10-2023
+
+===========Goals For this week===========
+-finish at least 70% of the partials and pages
+-get server set up for API calls
+-get DB set up for user info
+-implement messaging service

@@ -1,0 +1,36 @@
+Meeting Date:5/1/23
+
+==========Work done from last week==========
+-Jackson
+    -gave the home page more formating as well as added more elements
+    -finshed user profile page
+    -implemented profile image feature
+    -implemented edit profile feature
+
+-Sam
+
+-Bipin
+    
+-Andy
+    
+==========Work todo this week==========
+-Jackson
+    -start working on the presentation
+
+-Sam
+
+-Bipin
+
+-Andy
+    
+==========Genral notes==========
+-Run through of presentation
+    -challenges to talk about
+        *gmail API
+    -Demo
+        *show different user roles 
+        *talk about API limitations
+    -add furture enhancments slide
+    -deploy project and have QR code to website in slides
+    -add background image for pages
+    -make sure everything is merged

@@ -1,0 +1,36 @@
+Meeting Date:4/24/23
+
+==========Work done from last week==========
+-Jackson
+    -created endpoints for all the pages
+    -created logout API
+    -wrote test plan for lab 11
+    -started work on profile feature (incomplete)
+        -set up DB to hold profile info
+        -created EJS page for profile
+        -started get route to fill profile info
+    -created basic home page
+    -send screenshot of homepage to TA
+    -send screenshot of profile page to TA by thursday
+-Sam
+    -Finished petfinder API Call
+    -Finished SearchBar on searchpage
+-Bipin
+    -made table and API call for marketplace
+        -need to add more products for the database
+-Andy
+    -debugging error with gmail API 
+        -once fixed should be simple
+==========Work todo this week==========
+-Jackson
+    -finish user profile feature
+    -finish home page
+-Sam
+    -Fix petfinder api token 
+    -Work on individual pet pages
+-Bipin
+-Andy
+    -make a shell for the contact page
+==========Genral notes==========
+-Finish work that is already assigned
+-Get ready for presentations

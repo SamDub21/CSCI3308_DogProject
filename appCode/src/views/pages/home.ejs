@@ -1,7 +1,79 @@
-<%- include ('../partials/header') %> <%- include ('../partials/menu') %>
-
+<%- include ('../partials/header') %> 
+<%- include ('../partials/menu') %>
 <main>
-    <h1>Welcome to the dawg house</h1>
+    <div class="container text-center">
+        <div class="row my-4">
+            <div id="title" class="col">
+                <h1>Find your new best friend and adopt today!!!</h1>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div id="aboutUs" class="col">
+                <h3>About Us</h3>
+                <p>
+                    At The Dawg House, we are passionate about finding loving homes for rescue dogs in need. We believe that every dog deserves a 
+                    second chance at happiness. When you adopt you can rest assured that you are making a positive impact on the life of a shelter
+                    dog. Thank you for supporting our mission to rescue and rehome dogs in need. Together, we can make a difference in the lives 
+                    of animals and create a more compassionate world.
+                </p>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div id="searchLink" class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/resources/img/adoptMe.png" class="card-img-top" alt="Dogs in need of adoption" width="500" height="auto">
+                    <div class="card-body">
+                      <h5 class="card-title">Search our database of dogs in need of your love</h5>
+                      <a href="/search" class="btn btn-primary">Save a Life Now</a>
+                    </div>
+                </div>
+            </div>
+            <div id="storeLink" class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/resources/img/petStore.jpg" class="card-img-top" alt="Pet Store" width="500" height="auto">
+                    <div class="card-body">
+                      <h5 class="card-title">Buy your furry friend something nice</h5>
+                      <a href="/market" class="btn btn-primary">Visit our Store</a>
+                    </div>
+                </div>
+            </div>
+            <div id="profileLink" class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/resources/img/aboutMe.png" class="card-img-top" alt="profile image" width="500" height="auto">
+                    <div class="card-body">
+                      <h5 class="card-title">Tell Us about Yourself</h5>
+                      <a href="/profile" class="btn btn-primary">See your Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div id="inboxLink" class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/resources/img/inbox.png" class="card-img-top" alt="mail image" width="500" height="auto">
+                    <div class="card-body">
+                      <h5 class="card-title">Talk to other users</h5>
+                      <a href="/messages_inbox" class="btn btn-primary">Send a Message</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-4" id="articles">
+            <h3>Adoption Resources</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="https://www.aspcapetinsurance.com/resources/ins-and-outs-of-adopting-a-dog/">Adopting a Rescue Dog: The Ins and Outs and What to Expect</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="https://www.aspca.org/pet-care/dog-care/general-dog-care">General Dog Care</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="https://www.purina.com/articles/dog/care/winter-safety-tips-for-dogs-in-snow">6 Winter Safety Tips for Dogs in the Snow</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="https://www.dailypaws.com/dogs-puppies/dog-adoption/first-time-dog-owner-tips">14 Tips for First-Time Dog Owners</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </main>
 
 <%- include ('../partials/footer') %>
