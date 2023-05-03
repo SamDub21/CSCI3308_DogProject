@@ -375,8 +375,7 @@ app.post('/editProfile', async (req, res) => {
     req.session.save();
 
     res.render('pages/userProfile', {user : user, first : firstName, last : lastName, email : email, img : profileImg});
-  })
-  .catch((err) => {
+  }).catch((err) => {
     console.error(err);
     res.status(500).json({error : 'Server Error'});
   });
