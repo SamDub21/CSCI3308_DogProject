@@ -170,59 +170,81 @@ app.post('/login', async (req, res) => {
 /*
 var pets = {};
 
-pets.apiKey ="OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI";
-pets.apiSecret ="zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ";
-pets.apiToken = 'curl -d "grant_type=client_credentials&client_id={OCvLf7EtbC6ZY84CReHeoDhSqHBavqz0kkdFy1St2rT1qliBNI}&client_secret={zP8vSDaUvihfyhPTJ2IsZPy26I3qox1Ifw0bhAnQ}" https://api.petfinder.com/v2/oauth2/token';
-pets.petUrl = "https://api.petfinder.com/pet.find";
+pets.apiKey ="live_f2votVs1YGli6OE4l6GdEUYbsBaVWEoM9FWfyGRMIV29bPaOpe1aL79BjNOh21XM";
+pets.petUrl = "https://api.thedogapi.com/v1/images/search?has_breeds=true&limit=";
 
-//pets.availablePets = $('#availablePets');
+pets.availablePets = $('#availablePets');
 
 
-// pets.form = function() {
-// 	$('#petForm').on('submit', function(e){
-// 		e.preventDefault();
-// 		var userLocation = $('.currentLocation').val();
-//     var petType = $('select#petType option:checked').val();
-//     var petSex = $('select#petSex option:checked').val();
-//     console.log('click');
-// 		pets.petsCall(userLocation, petType, petSex);
-// 	});
-// }
-
-// pets.petsCall = function(userLocation, petType, petSex) {
-// 	console.log(userLocation, petType, petSex);
-// 	$.ajax({
-// 		url: pets.petUrl,
-// 		method: 'GET',
-//     crossDomain: true,
-// 		dataType: 'jsonp',
-// 		data : {
-// 			key: pets.apiKey,
-// 			location: userLocation,
-//       animal: petType,
-//       sex: petSex,
-// 			format: 'json',
-// 			count: 10,
-// 			age: 'Senior',
-// 			status: 'A'
-// 		}  
-// 	}).then(function(results){
-//   	var petResults = results.petfinder.pets.pet;
-// 		console.log(petResults);
-// 		for (var i = 0; i < petResults.length; ++i) {
-//     	var petName = petResults[i].name.$t;
-//       var petPhoto = petResults[i].media.photos.photo[0].$t;
-//       console.log(petName);
-//       console.log(petPhoto);
-//     	pets.availablePets.append('<p>' + petName + '</p>');
-//       pets.availablePets.append('<div><img src="' + petPhoto + '"></div>')
-//   	}
-// 	});
-// };
+ pets.form = function() {
+ 	$('#petForm').on('submit', function(e){
+ 		e.preventDefault();
+ 		var userLocation = $('.currentLocation').val();
+     var petType = $('select#petType option:checked').val();
+     console.log('click');
+ 		pets.petsCall(userLocation, petType, petSex);
+ 	});
+ }
+ pets.petsCall = function(userLocation, petType, petSex) {
+ 	console.log(userLocation, petType, petSex);
+ 	$.ajax({
+ 		url: pets.petUrl,
+ 		method: 'GET',
+     crossDomain: true,
+ 		dataType: 'jsonp',
+ 		data : {
+ 			key: pets.apiKey,
+ 			location: userLocation,
+       animal: petType,
+       sex: petSex,
+ 			format: 'json',
+ 			count: 10,
+ 			age: 'Senior',
+ 			status: 'A'
+ 		}  
+ 	}).then(function(results){
+   	var petResults = results.petfinder.pets.pet;
+ 		console.log(petResults);
+ 		for (var i = 0; i < petResults.length; ++i) {
+     	var petName = petResults[i].name.$t;
+       var petPhoto = petResults[i].media.photos.photo[0].$t;
+       console.log(petName);
+       console.log(petPhoto);
+     	pets.availablePets.append('<p>' + petName + '</p>');
+       pets.availablePets.append('<div><img src="' + petPhoto + '"></div>')
+   	}
+ 	});
+ };
 
 // $(document).ready(function() {
 // 	pets.form();
-// });
+// }); */
+
+app.get('/searchpage', (req, res) => {
+  axios({
+            url: https://api.thedogapi.com/v1/images/search?has_breeds=true&limit=50,
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+              'Accept-Encoding': 'application/json',
+            },
+            params: {
+              apikey: process.env.API_KEY,
+              keyword: Breed,
+              size: 10,
+            },
+          })
+            .then(results => {
+              console.log(results.data); // the results will be displayed on the terminal if the docker containers are running // Send some parameters
+              let dogs = results.data._embedded.dogs;
+              res.render('pages/searchpage.ejs',{doggys:doggys});
+            })
+            .catch(err => {
+              // Handle errors
+              console.log(err)
+              res.render('pages/searchpage.ejs', {message:"Error"});
+            });
+      });
 
 /*=====Authentication Middleware=====*/
 const auth = (req, res, next) => {
