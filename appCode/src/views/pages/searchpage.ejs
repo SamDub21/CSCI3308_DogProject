@@ -28,10 +28,12 @@
               <div class="card" style="width: 25rem;">
                   <img class="card-img-top" src="<%=dogs[i].url%>" alt="Card image cap">
                   <div class="card-body">
-                      <h5 class="card-title"><%=dogs[i].breed%></h5>
-                      <h6 class="class-subtitle"><%=dogs[i].weight.imperial></h6>
-                      <h7 class="class-subtitle"><%=dogs[i].height.imperial%></h7>
-                      <h7 class="class-subtitle"><%=dogs[i].description%></h7>
+                      <h5 class="card-title"><%=dogs[i].name%></h5>
+                      <h6 class="class-subtitle"><%=dogs[i].weight%></h6>
+                      <h7 class="class-subtitle"><%=dogs[i].age%></h7>
+                      <h8 class="class-subtitle"><%=dogs[i].breed%></h8>
+                      <h9 class="class-subtitle"><%=dogs[i].sex%></h9>
+
                       <p class="card-text"></p>
                       <a href="www.petfinder.com" class="btn btn-primary">Inquire!</a>
                   </div>
