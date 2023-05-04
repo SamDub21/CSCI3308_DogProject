@@ -220,7 +220,7 @@ pets.availablePets = $('#availablePets');
 // 	pets.form();
 // }); */
 
-app.get('/searchpage', (req, res) => {
+/*app.get('/searchpage', (req, res) => {
   axios({
             url: https://api.thedogapi.com/v1/images/search?has_breeds=true&limit=50,
             method: 'GET',
@@ -244,6 +244,13 @@ app.get('/searchpage', (req, res) => {
               console.log(err)
               res.render('pages/searchpage.ejs', {message:"Error"});
             });
+      }); */
+
+  app.get('/marketplace', (req, res) => {
+    const query = `SELECT * FROM DOGS`;
+    db.any(query)
+      .then(data=>{
+       res.render("pages/searchpage", {dogs: data})})
       });
 
 /*=====Authentication Middleware=====*/
