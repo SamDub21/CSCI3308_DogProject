@@ -222,7 +222,7 @@ pets.availablePets = $('#availablePets');
 
 /*app.get('/searchpage', (req, res) => {
   axios({
-            url: https://api.thedogapi.com/v1/images/search?has_breeds=true&limit=50,
+            url: 'https://api.thedogapi.com/v1/images/search?has_breeds=true&limit=50',
             method: 'GET',
             dataType: 'json',
             headers: {
