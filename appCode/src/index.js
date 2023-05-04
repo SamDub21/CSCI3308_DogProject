@@ -250,7 +250,7 @@ pets.availablePets = $('#availablePets');
     const query = `SELECT * FROM DOGS`;
     db.any(query)
       .then(data=>{
-       res.render("pages/searchpage", {dogs: data})})
+       res.render("pages/searchpage.ejs", {dogs: data})})
       });
 
 /*=====Authentication Middleware=====*/
