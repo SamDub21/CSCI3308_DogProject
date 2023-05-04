@@ -2,26 +2,47 @@
 <%- include ('../partials/menu') %>
 
 <form id="petForm">
-    <input type="text" class="currentLocation" placeholder="Your Zip Code">
-
-    <label for="typeOfPet">Type of Pet</label>
-  <select name="typeOfPet" id="petType">
-           <option value="cat">Cat</option>
-           <option value="dog">Dog</option>
-       </select>
- 
- <label for="sexOfPet">Preferred Sex</label>
-   <select name="sexOfPet" id="petSex">
-     <option value="">No preference</option>
-     <option value="M">Show only Males</option>
-     <option value="F">Show only Females</option>
-   </select>
-     
-    <input type="submit" name="submit" value="Find Friends" id="submit">
+  <input type="text" class="Breed" placeholder="Breed You want to search For">
+  <label for="typeOfPet">Type of Pet</label>
+<select name="typeOfPet" id="petType">
+         <option value="dog">Dog</option>
+     </select>
+ </select>
+   
+  <input type="submit" name="submit" value="Find Friends" id="submit">
 </form>
 <div id="availablePets">
-    
+  
 </div>
+
+<main>
+  <section class="section">
+      <div class="container">
+          <h1>Interests</h1>
+      </div>
+  </section>
+  <h1>dogs</h1>
+  <div class="container">
+      <div class="row">
+          <% for(let i = 0; i < dogs.length; i++){%>
+              <div class="card" style="width: 25rem;">
+                  <img class="card-img-top" src="<%=dogs[i].url%>" alt="Card image cap">
+                  <div class="card-body">
+                      <h5 class="card-title"><%=dogs[i].name%></h5>
+                      <h6 class="class-subtitle"><%=dogs[i].weight%></h6>
+                      <h7 class="class-subtitle"><%=dogs[i].age%></h7>
+                      <h8 class="class-subtitle"><%=dogs[i].breed%></h8>
+                      <h9 class="class-subtitle"><%=dogs[i].sex%></h9>
+
+                      <p class="card-text"></p>
+                      <a href="https://www.petfinder.com/" class="btn btn-primary">Inquire!</a>
+                  </div>
+              </div>
+          <%}%>
+      </div>
+  </div>
+</main>
+
 
 
 
