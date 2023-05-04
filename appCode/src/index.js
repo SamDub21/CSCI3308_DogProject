@@ -234,7 +234,7 @@ const auth = (req, res, next) => {
 app.use(auth);
 
 /*=====Marketplace APIS=====*/
-app.get('/marketplace', (req, res) => {
+app.get('/market', (req, res) => {
   const query = `SELECT * FROM PRODUCTS`;
   db.any(query)
   .then(data=>{
