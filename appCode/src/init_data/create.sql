@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS messages(
 CREATE TABLE IF NOT EXISTS products(
     imageSource VARCHAR(10000),
     title VARCHAR(1000),
-    cost INT,
+    cost DECIMAL,
     description VARCHAR(10000),
     url VARCHAR(10000)
 );

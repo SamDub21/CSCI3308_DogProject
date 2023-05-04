@@ -1,35 +1,51 @@
 <%- include ('../partials/header') %>
 <main>
-    <div class="container">
-      <h1>Register</h1>
-      <form action="/register" method="POST">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
-          </div>
-          <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter First Name">
-          </div>
-          <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Enter Last Name">
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="text" name="email" class="form-control" id="email" placeholder="Enter Email">
-          </div>
-          <div class="form-group">
-            <label for="profileImg">Profile Picture</label>
-            <input type="text" name="profileImg" class="form-control" id="profileImg" placeholder="Enter image URL">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password">
-          </div>
-          <small id="have_account" class="form-text text-muted">Already have an account? <a href="../login">Login</a></small>
-          <button type="submit" class="btn btn-primary">Register</button>
-      </form>
-    </div>
+    <!-- <div class="container" style="margin-left:475px; margin-top:100px;"> -->
+      <!-- <div class="card text-center" style="width:30rem"> -->
+        <div class="card-header1 text-center">
+          Register Here!
+        </div>
+        <form class="neat-form" action="/register" method="POST">
+            <div class="form-group">
+              <label for="username">Username
+                <span class="required">*</span>
+              </label>
+              <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
+            </div>
+            <div class="row">
+              <div class="form-group col-sm">
+                <label for="firstName">First Name
+                  <span class="required">*</span>
+                </label>
+                <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter First Name">
+              </div>
+              <div class="form-group col-sm">
+                <label for="lastName">Last Name
+                  <span class="required">*</span>
+                </label>
+                <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Enter Last Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address
+                <span class="required">*</span>
+              </label>
+              <input type="text" name="email" class="form-control" id="email" placeholder="Enter Email">
+            </div>
+            <div class="form-group">
+              <label for="profileImg">Profile Picture</label>
+              <input type="text" name="profileImg" class="form-control" id="profileImg" placeholder="Enter image URL">
+            </div>
+            <div class="form-group">
+              <label for="password">Password
+                <span class="required">*</span>
+              </label>
+              <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password">
+            </div>
+            <small id="have_account" class="form-text text-muted">Already have an account? <a href="../login">Login</a></small>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+      <!-- </div> -->
+    <!-- </div> -->
   </main>
 <%- include ('../partials/footer') %>

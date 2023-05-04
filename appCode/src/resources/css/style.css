@@ -44,4 +44,47 @@ html{
 body{
   width:100%;
   height:100%;
+  font-family: "Gotham A","Gotham B",sans-serif;
+  background-image: url();
+}
+.market{
+margin: 10px;
+}
+.cardImg{
+  width: auto;
+  height: auto;
+  max-height: 300px;
+}
+.username{
+  display: block !important;
+  margin-right: auto;
+  margin-left: auto;
+  width: 70% !important;
+}
+.password{
+  display: block !important;
+  margin-right: auto;
+  margin-left: auto;
+  width: 70% !important;
+}
+.cardsAtHome{
+  background:dimgray;
+}
+.neat-form{
+  padding: 3rem;
+}
+.card-header1{
+  font-size: 40px;
+}
+.form-group{
+  font-weight: bold;
+}
+.bottom-left {
+  position: absolute;
+  bottom: 100px;
+  left: 30px;
+  max-width: 300px;
+}
+h2{
+  text-align: center;
 }

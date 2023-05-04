@@ -2,23 +2,26 @@
     <%- include ('../partials/menu') %>
         <main>
             <section class="section">
-                <div class="container">
-                    <h1>Interests</h1>
-                </div>
             </section>
-            <h1>Pet store</h1>
             <div class="container">
-                <div class="row">
+                <div class="card">
+                    <img src="https://p-cdn6pet.jmsinf.com/tmp/image-thumbnails/pupperoni/category/image-thumb__8663__auto_8bccc844f527071a477b1f0ae0f83e20/pup-products-m.jpg" 
+                    alt="Avatar" style="width:100%">
+                    <div class="bottom-left">
+                        We recommend you guys to get these recommended products from us since it's cheap and convinient.
+                    </div>
+                </div>
+                <div class="row my-4">
                     <% for(let i = 0; i<products.length; i++){%>
                         <%if(i==0){%>
-                             <h4>Foods</h4>
+                            <h2>Food</h2>
                         <%}else if(i==3){%>
-                            <h4>Toys</h4>
+                            <h2>Toys</h2>
                         <%}else if(i==6){%>
-                            <h4>Hair care</h4>
+                            <h2>Hair care</h2>
                         <%}%>
-                        <div class="card" style="width: 25rem;">
-                            <img class="card-img-top" src="<%=products[i].imagesource%>" alt="Card image cap">
+                        <div class="card market" style="width: 25rem;">
+                            <img class="card-img-top cardImg" src="<%=products[i].imagesource%>" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title"><%=products[i].title%></h5>
                                 <h6 class="class-subtitle"><%=products[i].cost%></h6>
