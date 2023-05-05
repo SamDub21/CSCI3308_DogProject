@@ -1,8 +1,16 @@
+=========Week 4 (5/1/23 - 5/4/23)===========
+-Finished formating and CSS
+-Made project presentation + report
+-Finalized Marketplace page layout
+-Finished Search page
+-Added more content to home page
+
 =========Week 3 (4/24/23 - 5/1/23)==========
 -edited login API to set more session variables upon login
 -Added Formating to home page
 -Added user profile image
 -Users can now edit profile information
+-created messaging service 
 
 
 =========Week 2 (4/17/23 - 4/24/23)==========

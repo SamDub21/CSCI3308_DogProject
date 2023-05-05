@@ -1,0 +1,52 @@
+Use Case 1: Successful registration
+    Test Data: Valid username, first name, last name, valid email, and password
+	User Activity: Users enter information into form and presses the register button
+	Expected Result: User is given a registration success message and redirected to the login page
+    What is the user doing?
+        -Registering a new account.
+    Is their behavior consistent with the use case?
+        -Yes
+    If there is a deviation from the expected actions, what is the reason for that?
+        -The user had some difficulty finding the URL for their profile image. This is probably because they are more used to submitting a file rather than a URL.
+    Did you use that to make changes to your application? If so, what changes did you make?
+        -No but in the future it would be better to change the database to store image files rather the URLs
+
+Use Case 2: Successful login
+    Test Data: Valid username and password
+	User Activity: User enters username and password and presses the login button
+	Expected Result: User is logged in and sent to the home page
+    What is the user doing?
+        -Logging into their account
+    Is their behavior consistent with the use case?
+        -Yes
+    If there is a deviation from the expected actions, what is the reason for that?
+        -No
+    Did you use that to make changes to your application? If so, what changes did you make?
+        -No
+
+Use Case 3: User successfully sends a message to another user
+    Test Data: Valid username and password pair, second valid username, message content
+	User Activity: User logs in and goes to message page and sends message to second user
+	Expected Result: User sees their message in the sent column
+    What is the user doing?
+        -Sending a message to another user.
+    Is their behavior consistent with the use case?
+        -Yes
+    If there is a deviation from the expected actions, what is the reason for that?
+        -No deviation.
+    Did you use that to make changes to your application? If so, what changes did you make?
+        -No
+
+Use Case 4: User successfully edits their profile
+    Test Data: User account, edits for profile
+	User Activity: User goes to the profile page and selects edit form. User enters desired changes and presses the save changes button.
+	Expected Result: User is redirected to the profile page and sees expected changes.
+    What is the user doing?
+        -The user is editing their profile.
+    Is their behavior consistent with the use case?
+        -Yes
+    If there is a deviation from the expected actions, what is the reason for that?
+        -No deviation.
+    Did you use that to make changes to your application? If so, what changes did you make?
+        -No
+

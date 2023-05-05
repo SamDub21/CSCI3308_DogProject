@@ -24,6 +24,8 @@ Feature 1: User Login
     User Acceptance Testers
     -The user acceptance testers will be a group of real-world end-users who will provide feedback on the usability and functionality of the user login feature. They will be given access to the website and asked to perform specific tasks, verifying that the user login feature works as expected.
 
+
+
 Feature 2: User Registration
 	Case 1: User registers with valid information
 		-Test Data: Valid username, first name, last name, valid email, and password
@@ -60,35 +62,64 @@ Feature 2: User Registration
     -The user acceptance testers will be a group of real-world end-users who will provide feedback on the usability and functionality of the user registration feature. They will be given access to the website and asked to perform specific tasks, verifying that the user registration feature works as expected.
 
 
-Feature 3: Dog Search Filter Functionality
-	Case 1: User filters by breed
-		-Test Data: Breed name
-		-User Activity: User presses filter button, then selects a breed and presses the search button 
-		-Expected Result: User is shown only dogs of selected breed
-	Case 2: User filters by age
-		-Test Data: Age range
-		-User Activity: User presses filter button, then selects an age range and presses search button 
-		-Expected Result: User is shown only dogs in the given age range
-	Case 3: User filters with invalid age range
-		-Test Data: Age range
-		-User Activity: User presses filter button, then selects an age range and presses search button 
-		-Expected Result: User is shown no dogs and an error message
-	Case 4: User filters by location
-		-Test Data: location and search radius
-		-User Activity: User presses filter button, enters a location and search radius, then presses search button
-		-Expected Result: User is shown only dogs in the given search radius
-    Test Data
-    -Breed name
-    -Age range
-    -User location
-    -search radius 
 
+Feature 3: Messaging Service 
+	Case 1: User successfully sends a message to another user
+		-Test Data: Valid username and password pair, second valid username, message content
+		-User Activity: User logs in and goes to message page and sends message to second user
+		-Expected Result: User sees their message in the sent column 
+	Case 2: User successfully recives message from another user
+		-Test Data: Valid username and password pair, second account to send test message
+		-User Activity: User logs in and goes to message page and then goes to their inbox
+		-Expected Result: User sees the message in their inbox 
+	Case 3: User trys to send a message to a user that does not exist 
+		-Test Data: Valid username and password pair, invalid username, message content
+		-User Activity: User logs in and goes to message page and sends message to invalid user
+		-Exprected Result: User should see an error message and should not see message in sent column
+	Test Data
+	-Two valid username and password combinations
+	-Invalid username
+	-Messsage content
+    
     Test Environment
     -The website will be tested in a development environment that mirrors the production environment as closely as possible.
-    
+   
     Test Results
     -Test results will be recorded in a file in the project repository, including the test case, the actual result, and any notes or comments.
     
     User Acceptance Testers
-    -The user acceptance testers will be a group of real-world end-users who will provide feedback on the usability and functionality of the dog search filter feature. They will be given access to the website and asked to perform specific tasks, verifying that the dog search filter feature works as expected.
+    -The user acceptance testers will be a group of real-world end-users who will provide feedback on the usability and functionality of the user login feature. They will be given access to the website and asked to perform specific tasks, verifying that the user login feature works as expected.
+
+
+
+Feature 4: Editing User Profile
+	Case 1: User edits profile
+		-Test Data: User account, edits for profie
+		-User Activity: User goes to the profile page and selects edit form. User enters desired changes and presses the save changes button.
+		-Expected Result: User is redirected to the profile page and sees expected changes. 
+	Case 2: User leaves field blank and saves changes
+		-Test Data: User account
+		-User Activity: User goes to the profile page and selects edit form. User deletes all the data in one of the form fields and presses the save changes button.
+		-Expected Result: User recives an error message
+	Case 3: User exits editing form without making any changes
+		-Test Data: User account
+		-User Activity: User goes to the profile page and selects edit form. User presses the discard changes button.
+		-Expected Result: User is redirected to the profile page
+	Case 4: User exits editing form after editing
+		-Test Data: User account, edits for profie
+		-User Activity: User goes to the profile page and selects edit form. User enters desired changes and presses the discard changes button.
+		-Expected Result: User is redirectd to the profile page and sees no changes to profile information
+
+	Test Data
+	-User account 
+	-edits for user profile
+    
+    Test Environment
+    -The website will be tested in a development environment that mirrors the production environment as closely as possible.
+   
+    Test Results
+    -Test results will be recorded in a file in the project repository, including the test case, the actual result, and any notes or comments.
+    
+    User Acceptance Testers
+    -The user acceptance testers will be a group of real-world end-users who will provide feedback on the usability and functionality of the user login feature. They will be given access to the website and asked to perform specific tasks, verifying that the user login feature works as expected.
 
