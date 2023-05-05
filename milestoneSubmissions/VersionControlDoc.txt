@@ -1,8 +1,12 @@
+=========Week 4 (5/02/23 - 5/4/02)==========
+-Improved CSS styling of pages
+
 =========Week 3 (4/24/23 - 5/1/23)==========
 -edited login API to set more session variables upon login
 -Added Formating to home page
 -Added user profile image
 -Users can now edit profile information
+-Created user messaging system API calls and database infastructure
 
 
 =========Week 2 (4/17/23 - 4/24/23)==========
@@ -11,6 +15,7 @@
 -made test plan and a unit tests for login/logut functionality
 -updated DB to hold user profile information
 -made the home page
+-Created user messaging system ejs pages
 
 
 ==========Week 1 (4/10/23 - 4/17/23)==========
